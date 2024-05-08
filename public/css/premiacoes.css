@@ -1,0 +1,61 @@
+.area_premiacoes {
+    margin-top: 100px;  
+    display: flex;
+    flex-direction: column;
+}
+
+.area_premiacoes img {
+    width: 50%;
+    margin-left: auto;
+}
+
+.area_premiacoes h3 {
+    color:#f90201;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 50px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    text-align: center;
+    border-left: 1px solid #f99601;
+    border-right: 1px solid #f99601;
+    border-radius:7px;
+    padding: 0px 7px;
+    width: fit-content;
+}
+
+.premiacoes {
+    width: 50%;
+    height: 55vh;
+    margin-left: 50px;
+    display: flex;
+}
+
+
+.premiacoes .prem_col {
+    width: 300px;
+}
+
+.premiacoes li {
+    font-size: 25px;
+    color: #f99601;
+}
+
+.premiacoes > ul li {
+    margin-left: 30px;
+}
+
+
+.premiacoes li:first-of-type {
+    list-style: url('./Assets/emmy.png');
+}
+
+.premiacoes li span {
+    color: #ffffff;
+}
+
+.premiacoes li ul li {
+    list-style:  url('./Assets/emmy.png');
+    font-size: 20px;
+    margin-left: 50px;
+    color: #ffffff;
+}

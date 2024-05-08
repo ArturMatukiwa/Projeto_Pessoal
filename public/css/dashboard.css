@@ -1,0 +1,14 @@
+.header .navbar {
+    display: flex;
+    justify-content: start;
+    margin-left: 70px;
+}
+
+.container_dashboard {
+    height: 680px;
+}
+
+.container_dashboard img {
+    height: 100%;
+    width: 22%;
+}

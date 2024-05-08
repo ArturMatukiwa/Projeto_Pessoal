@@ -1,0 +1,134 @@
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 80px;
+}
+
+.box {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    height: 90vh;
+}
+
+.texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 70%;
+    width: 40%;
+    margin-left: 50px;
+}
+
+.texto h3 {
+    color:#f90201;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 50px;
+    margin-bottom: 40px;
+    border-left: 1px solid #f99601;
+    border-radius: 8px;
+    padding-left: 7px;
+    width:fit-content
+}
+
+.texto p {
+    font-size: 25px;
+    border-radius: 15px;
+}
+
+.imagem-enredo {
+    background-image: url('../assets/foto_enredo.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 65%;
+    height: 90%;
+}
+
+hr {
+    width: 50%;
+    margin: 35px 0px;
+    border-color: #ffffff;
+    border-width: 1px;
+}
+
+.imagem-justif {
+    background-image: url('https://i.pinimg.com/564x/df/47/92/df4792e988141fa145862bd05e2c445d.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    width: 60%;
+    margin-top: auto;
+}
+
+.justify {
+    display: flex;
+    align-items: center;
+    margin: 0px 20px;
+    padding-left: 0px;
+    width: 70%;
+    height: 100%;
+}
+
+.justify h3 {
+    width: fit-content;
+    margin-bottom: 60px;
+    border-left: 0px;
+    border-bottom: 1px solid #f99601;
+    border-radius: 7px;
+    padding-bottom: 8px;
+}
+
+.justify p {
+    border-left: none;
+    text-align: center;
+}
+
+.ods_onu {
+    margin-top: 50px;
+    display: flex;
+    justify-content:space-around;
+    width: 100%;
+}
+
+.area_influencia {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 20px;
+}
+
+.area_influencia img {
+    height: 100%;
+}
+
+.influencia h3 {
+    color:#f90201;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 50px;
+    margin-bottom: 40px;
+    text-align: center;
+    border-left: 1px solid #f99601;
+    border-right: 1px solid #f99601;
+    border-radius:7px;
+    padding: 0px 7px;
+    width: fit-content;
+}
+
+.influencia {
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 15px;
+}
+
+.influencia p {
+    font-size: 25px;
+    text-align: center;
+    padding-left: 15px;
+}

@@ -1,0 +1,123 @@
+.header .img_voltar {
+    width: 60px;
+    height: 60px;
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header .img_voltar img {
+    width: 60px;
+    height: 60px;
+}
+
+.header .img_voltar:hover {
+    cursor:pointer;
+}
+
+.header {
+    border-bottom: 2px solid #4d0d0d;
+    position: static;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    height: 89vh;
+    align-items: center;
+    background-color: #160000;
+}
+
+.img_login {
+    display: flex;
+    align-items: end;
+    margin-top: auto;
+}
+
+.area_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 40%;
+    height: 60%;
+}
+
+.area_login h2 {
+    font-family: "Fjalla One", sans-serif;
+    font-size: 35px;
+    text-align: center;
+    color: #f90201;
+}
+
+.campo_login {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 50%;
+    width: 90%;
+}
+
+.campo_login label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 22px;
+    height: 65px;
+    width: 80%;
+    justify-content: space-between;
+}
+
+.campo_login input {
+    box-sizing: border-box;
+    height: 35px;
+    width: 80%;
+    background-color: #D9D9D9;
+    border: 3px solid #524f4f;
+    border-radius: 5px;
+    color: #000000;
+    font-size: 17px;
+    padding: 3px 3px;
+}
+
+.campo_login input:focus {
+    outline: 1px solid #f99601;
+    /* outline: 1px solid #; */
+}
+
+.botao_login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botao_login button {
+    width: 130px;
+    height: 40px;
+    color: #ffffff ;
+    background-color: #f90201;
+    border-color: #686464;
+    border-radius: 7px;
+    font-size: 18px;
+    font-weight:bolder;
+    margin-bottom: 5px;
+}
+
+.botao_login button:hover {
+    cursor:pointer;
+    background-color: #b30505;
+}
+
+.botao_login span a {
+    color: #3fb1e6;
+}
+
+.botao_login span a:active {
+    color: #075980;
+}
+
+.footer {
+    margin-top: 0px;
+}

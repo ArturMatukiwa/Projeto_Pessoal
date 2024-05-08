@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Família Soprano - Personagens</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/personagens.css">
+    <link rel="stylesheet" href="./css/style_logado.css">
+    <link rel="shortcut icon" href="./assets/icon.png">
+</head>
+<body>
+    <div class="header">
+        <div class="img_logo">
+            <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+        </div>
+        <ul class="navbar">
+            <div class="nav1 nav">
+                <li><a href="index_logado.html">Home</a></li>
+                <li><a href=""  style=" color:#f90201;">Personagens</a></li>
+                <li><a href="./premiacoes_logado.html">Premiações</a></li>
+                <li><a href="./dashboard.html">Painel</a></li>
+            </div>
+            <div class="perfil">
+                <img src="./Assets/foto_perfil.png" alt="" onclick="mudar_estado_perfil()">
+            </div>
+        </ul>
+    </div>
+    <div class="area_perfil" id="perfil">
+        <div class="perfil_sup">
+            <span>Olá NomeUsuário!</span>
+            <img src="./Assets/x.png" alt="" id="fechar" onclick="fechar_perfil()">
+        </div>
+        <div class="txt_perfil">
+            <span>emailUsuario@.com</span>
+        </div>
+        <span onclick="voltar_deslogado()">Sair da conta</span>
+    </div>
+
+    <div class="container">
+
+        <div class="cards_conteudo">
+            <div class="cards">
+                <span> Tony Soprano </span>
+                <img src="./Assets/tony_soprano_card.jpg" alt="card">
+            </div>
+            <div class="cards">
+                <span>Carmela Soprano</span>
+                <img src="./Assets/carmela_card.jpg" alt="card">
+            </div>
+            <div class="cards">
+                <span>A.J. Soprano</span>
+                <img src="./Assets/aj_card.jpg" alt="card">
+            </div>
+            <div class="cards">
+                <span>Meadow Soprano</span>
+                <img src="./Assets/meadow_card.jpg" alt="card">
+            </div>
+        </div>
+    
+        <hr>
+
+        <div class="cards_conteudo">
+            <div class="cards">
+                <span>Christopher Moltisanti</span>
+                <img src="./Assets/christopher_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Junior Soprano</span>
+                <img src="./Assets/junior_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Dra. Melfi</span>
+                <img src="./Assets/dr_melfi_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Livia Soprano</span>
+                <img src="./Assets/livia_card.jpg" alt="cards">
+            </div>
+        </div>
+    
+        <hr>
+    
+        <div class="cards_conteudo">
+            <div class="cards">
+                <span>Janice Soprano</span>
+                <img src="./Assets/janice_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Paulie Gualtieri</span>
+                <img src="./Assets/paulie_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Silvio Dante</span>
+                <img src="./Assets/silvio_card.jpg" alt="cards">
+            </div>
+            <div class="cards">
+                <span>Bobby Baccalieri</span>
+                <img src="./Assets/bobby_card.jpg" alt="cards">
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <div class="contatos">
+            <img src="./Assets/tony_footer.png" alt="" width="70px">
+        <span>Nos contate:</span>
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s" alt="" width="50px">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png" alt="" width="40px">
+        </div>
+    </div>
+        <div class="img_footer">
+            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png" alt="" width="70px">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function voltar() {
+        document.location.href = './index_logado.html'
+    }
+
+    function mudar_estado_perfil() {
+        var display = document.getElementById('perfil').style.display;
+
+        if(display == 'none') {
+            document.getElementById('perfil').style.display = 'flex'
+        } else {
+            document.getElementById('perfil').style.display = 'none'
+        }
+    }
+
+    function fechar_perfil() {
+        document.getElementById('perfil').style.display = 'none';
+    }
+
+    function voltar_deslogado() {
+        document.location.href = './index.html'
+    }
+</script>

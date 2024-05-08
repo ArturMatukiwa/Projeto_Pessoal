@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Família Soprano</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/premiacoes.css">
+    <link rel="stylesheet" href="./css/style_logado.css">
+    <link rel="shortcut icon" href="./assets/icon.png">
+</head>
+<body>
+    <div class="header">
+        <div class="img_logo">
+            <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+        </div>
+        <ul class="navbar">
+            <div class="nav1 nav">
+                <li><a href="index_logado.html">Home</a></li>
+                <li><a href="./personagens_logado.html">Personagens</a></li>
+                <li><a href="" style=" color:#f90201;">Premiações</a></li>
+                <li><a href="./dashboard.html">Painel</a></li>
+            </div>
+            <div class="perfil">
+                <img src="./Assets/foto_perfil.png" alt="" onclick="mudar_estado_perfil()">
+            </div>
+        </ul>
+    </div>
+    <div class="area_perfil" id="perfil">
+        <div class="perfil_sup">
+            <span>Olá NomeUsuário!</span>
+            <img src="./Assets/x.png" alt="" id="fechar" onclick="fechar_perfil()">
+        </div>
+        <div class="txt_perfil">
+            <span>emailUsuario@.com</span>
+        </div>
+        <span onclick="voltar_deslogado()">Sair da conta</span>
+    </div>
+
+    <div class="conteudo">
+        <div class="area_premiacoes">
+            <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/12/The-Sopranos-Cast.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5" alt="">
+            <h3>Premiações</h3>
+            <div class="premiacoes">
+                <ul class="prem_col">
+                    <li>126 <span>prêmios ao total</span></li>
+                    <li>AFIs 
+                        <ul>
+                            <li>2004</li>
+                            <li>2007</li>
+                        </ul>
+                    </li>
+                    <li> PGA Awards
+                        <ul>
+                            <li>2000</li>
+                            <li>2005</li>
+                            <li>2008</li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="prem_col">
+                    <li>Globo de  Ouro
+                        <ul>
+                            <li>2000</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="contatos">
+            <img src="./Assets/tony_footer.png" alt="" width="70px">
+        <span>Nos contate:</span>
+        <div>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s" alt="" width="50px">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png" alt="" width="40px">
+        </div>
+    </div>
+        <div class="img_footer">
+            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png" alt="" width="70px">
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function voltar() {
+        document.location.href = './index_logado.html'
+    }
+
+    function mudar_estado_perfil() {
+        var display = document.getElementById('perfil').style.display;
+
+        if(display == 'none') {
+            document.getElementById('perfil').style.display = 'flex'
+        } else {
+            document.getElementById('perfil').style.display = 'none'
+        }
+    }
+
+    function fechar_perfil() {
+        document.getElementById('perfil').style.display = 'none';
+    }
+
+    function voltar_deslogado() {
+        document.location.href = './index.html'
+    }
+</script>
