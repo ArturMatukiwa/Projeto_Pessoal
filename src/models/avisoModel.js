@@ -11,7 +11,6 @@ function listar() {
             u.id AS idUsuario,
             u.nome,
             u.email,
-            u.cpf,
             u.senha
         FROM aviso a
             INNER JOIN usuario u
@@ -32,7 +31,6 @@ function pesquisarDescricao(texto) {
             u.id AS idUsuario,
             u.nome,
             u.email,
-            u.cpf,
             u.senha
         FROM aviso a
             INNER JOIN usuario u
@@ -54,7 +52,6 @@ function listarPorUsuario(idUsuario) {
             u.id AS idUsuario,
             u.nome,
             u.email,
-            u.cpf,
             u.senha
         FROM aviso a
             INNER JOIN usuario u

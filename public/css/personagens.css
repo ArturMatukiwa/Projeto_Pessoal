@@ -25,7 +25,7 @@
     height: 100%;
     cursor: pointer;
     transform-style: preserve-3d ;
-    transition: .3s;
+    transition: .25s;
     display: flex;
     flex-direction: column;
 }
@@ -62,9 +62,12 @@
 }
 
 .frente span, .atras span {
-    color: #ffffff;
     font-size: 20px;
     font-family: "Fjalla One", sans-serif;
+}
+
+.atras span {
+    color: #f99601;
 }
 
 .conteudo_atras {
