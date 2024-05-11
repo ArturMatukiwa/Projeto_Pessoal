@@ -8,8 +8,8 @@
 }
 
 .header .img_voltar img {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
 }
 
 .header .img_voltar:hover {
@@ -19,6 +19,8 @@
 .header {
     border-bottom: 2px solid #4d0d0d;
     position: static;
+    height: 50px;
+
 }
 
 .login {
@@ -29,10 +31,33 @@
     background-color: #160000;
 }
 
+#mensagem_validacao {
+    position: absolute;
+    align-self: self-start;
+    height: auto;
+    width: auto;
+    box-sizing: border-box;
+    color: #e70303;   
+    background-color: #f99601;
+    border-radius: 15px;
+    border: 2px solid #000000;
+    box-shadow: 5px 5px 25px #000000;
+    font-size: 20px;
+    font-weight: bolder;
+    padding:15px;
+    display: none;
+    background-color: #e2dcdc;
+}
+
 .img_login {
     display: flex;
     align-items: end;
     margin-top: auto;
+    height: 80%;
+}
+
+.img_login img {
+    height: 550px;
 }
 
 .area_login {
@@ -83,8 +108,17 @@
 }
 
 .campo_login input:focus {
+    outline: 1px solid #f99601 !important;
+    /* outline: 1px solid #; */
+}
+
+.campo_login input:valid {
     outline: 1px solid #f99601;
     /* outline: 1px solid #; */
+}
+
+.campo_login input:invalid {
+    outline: 0px solid #f99601;
 }
 
 .botao_login {

@@ -21,15 +21,15 @@
                 <li><a href="./premiacoes_logado.html">Premiações</a></li>
                 <li><a href="./dashboard.html">Painel</a></li>
             </div>
-            <div class="perfil">
-                <img src="./Assets/foto_perfil.png" alt="" onclick="mudar_estado_perfil()">
+            <div class="perfil" onclick="mudar_estado_perfil()">
+                <img src="./Assets/foto_perfil.png" alt="">
             </div>
         </ul>
     </div>
     <div class="area_perfil" id="perfil">
         <div class="perfil_sup">
             <span>Olá NomeUsuário!</span>
-            <img src="./Assets/x.png" alt="" id="fechar" onclick="fechar_perfil()">
+            <img src="./Assets/x.png" alt="" id="fechar" onclick="mudar_estado_perfil()">
         </div>
         <div class="txt_perfil">
             <span>emailUsuario@.com</span>
@@ -101,11 +101,18 @@
         }
     }
 
-    function fechar_perfil() {
-        document.getElementById('perfil').style.display = 'none';
-    }
-
     function voltar_deslogado() {
-        document.location.href = './index.html'
+        // resposta.json().then(json => {
+        //             console.log(json);
+        //             console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = '';
+            sessionStorage.NOME_USUARIO = '';
+            sessionStorage.ID_USUARIO = '';
+
+
+            setTimeout(function () {
+                window.location = "./index.html";
+            }, 3000); // apenas para exibir o loading
+        // })
     }
 </script>

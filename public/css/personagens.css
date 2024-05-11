@@ -61,33 +61,51 @@
     width: 100%;
 }
 
-.frente span, .atras span {
+.frente span, .atras > span {
     font-size: 20px;
     font-family: "Fjalla One", sans-serif;
 }
 
 .atras span {
-    color: #f99601;
+    color: transparent;
 }
 
 .conteudo_atras {
     box-sizing: border-box;
     padding: 0px 5px;
     border-radius:25px;
+    border: 1px solid #f99601;
     font-weight: bold;
-    background-color: white;
+    background-color: transparent;
     margin-top: auto;
     width: 100%;
     height: 490px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 70px;
+}
+
+.conteudo_atras h3 {
+    font-family: "Fjalla One", sans-serif;
+    color: #f90201;
 }
 
 .conteudo_atras p {
-    color: #000000;
+    color: #ffffff;
     font-size: 15px;
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.conteudo_atras p span {
+    color: #f8cf17;
+    font-weight: bold;
+}
+
+.conteudo_atras > span {
+    color: #f8cf17;
 }
 
 

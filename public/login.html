@@ -20,7 +20,7 @@
     </div>
 
     <div class="login">
-      <div id="mensagem_validacao"></div>
+        <div id="mensagem_validacao"></div>
         <div class="img_login">
             <img src="./Assets/nova_jersei_mafia.png" alt="Mafia de Nova Jersei">
         </div>
@@ -29,11 +29,11 @@
             <div class="campo_login">
                 <label>
                     Email
-                    <input type="text" autofocus id="ipt_nome">
+                    <input type="text" id="ipt_email" onclick="preencher_email()" onblur="remover_outline()" required autofocus>
                 </label>
                 <label>
                     Senha
-                    <input type="password" id="ipt_senha">
+                    <input type="password" id="ipt_senha" onclick="preencher_senha()" onblur="remover_outline()" required>
                 </label>
             </div>
             <div class="botao_login">
@@ -50,10 +50,31 @@
 </html>
 
 <script>
+    // function preencher_email() {
+    //     var email = ipt_email.value;
+    //     if(email != '') {
+    //       document.getElementById('ipt_email').style.outline = '1px solid #f99601';
+    //     }
+    // }
+
+    // function preencher_senha() {
+    //     var senha = ipt_senha.value;
+    //     if(senha != '') {
+    //       document.getElementById('ipt_senha').style.outline = '1px solid #f99601';
+    //     }
+    // }
+
+    // function remover_outline() {
+    //     var input = document.getElementsByTagName('input');
+    //     if(input.value == '') {
+    //       input.style.outlineWidth = '0px';
+    //     }
+    // }
+
      function entrar() {
         aguardar();
 
-        var emailVar = ipt_nome.value;
+        var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
@@ -63,8 +84,10 @@
             return false;
         }
         else {
-            setInterval(sumirMensagem, 3000)
+            setInterval(sumirMensagem, 5000)
         }
+
+    
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -92,9 +115,10 @@
                     sessionStorage.ID_USUARIO = json.id;
                     sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
 
+
                     setTimeout(function () {
                         window.location = "./index_logado.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 3000); // apenas para exibir o loading
 
                 });
 

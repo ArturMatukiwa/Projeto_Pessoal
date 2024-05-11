@@ -10,7 +10,8 @@
 }
 
 .area_premiacoes h3 {
-    color:#f90201;
+    /* color:#f90201; */
+    color:#0a7e06;
     font-family: "Fjalla One", sans-serif;
     font-size: 50px;
     margin-bottom: 10px;
@@ -46,7 +47,7 @@
 
 
 .premiacoes li:first-of-type {
-    list-style: url('./Assets/emmy.png');
+    list-style: url('../assets/emmy.png');
 }
 
 .premiacoes li span {
@@ -54,7 +55,7 @@
 }
 
 .premiacoes li ul li {
-    list-style:  url('./Assets/emmy.png');
+    list-style:  url('../assets/emmy.png');
     font-size: 20px;
     margin-left: 50px;
     color: #ffffff;

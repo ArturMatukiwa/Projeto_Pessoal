@@ -17,8 +17,7 @@
       <div class="img_voltar">
           <img src="./Assets/seta-voltar.png" alt="botao_voltar" onclick="voltar()">
         </div>
-      </div>
-      
+    </div>
     <div class="cadastro">
       <div id="mensagem_validacao"></div>
       <div class="area_cadastro">
@@ -26,21 +25,21 @@
       <div class="campos_cadastro">
         <label>
           Nome
-          <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" autofocus>
+          <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autofocus>
         </label>
         <label>
           Email
-          <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email">
+          <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required>
           <div id="mensagem_email" class="mensagem" ></div>
         </label>
         <label>
           Senha
-          <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha">
+          <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required>
           <div id="mensagem_senha" class="mensagem"></div>
         </label>
         <label>
           Confirme sua senha
-          <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao">
+          <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required>
           <div id="mensagem_confirmacao" class="mensagem"></div>
         </label>
       </div>
@@ -221,7 +220,7 @@
       finalizarAguardar();
       return false;
     } else {
-      setInterval(sumirMensagem, 3000);
+      setInterval(sumirMensagem, 5000);
     }
 
     if (
@@ -238,7 +237,7 @@
       alert('ERRO')
       return false;
     } else {
-      setInterval(sumirMensagem, 3000);
+      setInterval(sumirMensagem, 5000);
     }
     
 
@@ -261,13 +260,13 @@
 
         if (resposta.ok) {
           mensagem_validacao.style.display = "block";
-
+          mensagem_validacao.style.color = '#0a7e06'
           mensagem_validacao.innerHTML =
             "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
           setTimeout(() => {
             window.location = "login.html";
-          }, "2000");
+          }, "5000");
 
           limparFormulario();
           finalizarAguardar();

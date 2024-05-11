@@ -76,6 +76,17 @@
     }
 
     function voltar_deslogado() {
-        document.location.href = './index.html'
+        resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = '';
+            sessionStorage.NOME_USUARIO = '';
+            sessionStorage.ID_USUARIO = '';
+
+
+            setTimeout(function () {
+                window.location = "./index.html";
+            }, 3000); // apenas para exibir o loading
+        })
     }
 </script>

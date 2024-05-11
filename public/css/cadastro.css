@@ -69,6 +69,7 @@
 
 .campos_cadastro input {
     box-sizing: border-box;
+    padding-left: 5px;
     height: 35px;
     width: 80%;
     background-color: #D9D9D9;
@@ -78,12 +79,23 @@
     font-size: 17px;
 }
 
-.campos_cadastro input:focus {
+.campos_cadastro input:valid {
     outline: 1px solid #f99601;
     /* outline: 1px solid #; */
 }
 
+.campos_cadastro input:invalid {
+    outline: 0px solid #f99601;
+}
+
+.campos_cadastro input:focus {
+    outline: 1px solid #f99601 !important;
+    /* outline: 1px solid #; */
+}
+
 .mensagem{
+    position: absolute;
+    justify-self:end;
     color: #f99601;   
     font-size: 15px;
     font-weight: bolder;
