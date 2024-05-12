@@ -28,11 +28,11 @@
     </div>
     <div class="area_perfil" id="perfil">
         <div class="perfil_sup">
-            <span>Olá NomeUsuário!</span>
-            <img src="./Assets/x.png" alt="" id="fechar" onclick="mudar_estado_perfil()">
+            <span id="b_nome">Olá  NomeUsuário!</span>
+            <img src="./Assets/x.png"  id="fechar" onclick="mudar_estado_perfil()">
         </div>
         <div class="txt_perfil">
-            <span>emailUsuario@.com</span>
+            <span id="b_email">emailUsuario@.com</span>
         </div>
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
@@ -193,6 +193,9 @@
 </html>
 
 <script>
+    b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
+    b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
+
     function voltar() {
         document.location.href = './index.html'
     }

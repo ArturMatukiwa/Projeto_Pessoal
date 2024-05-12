@@ -58,6 +58,7 @@
 }
 
 .campos_cadastro label {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,30 +80,30 @@
     font-size: 17px;
 }
 
-.campos_cadastro input:valid {
+/* campos_cadastro input:valid {
     outline: 1px solid #f99601;
     /* outline: 1px solid #; */
-}
 
-.campos_cadastro input:invalid {
+
+/*.campos_cadastro input:inv.alid {
     outline: 0px solid #f99601;
-}
+} */
 
 .campos_cadastro input:focus {
-    outline: 1px solid #f99601 !important;
+    outline: 1px solid #f99601;
     /* outline: 1px solid #; */
 }
 
 .mensagem{
     position: absolute;
-    justify-self:end;
-    color: #f99601;   
-    font-size: 15px;
+    top: 110%;
+    color: #f8cf17;   
+    font-size: 16px;
     font-weight: bolder;
     padding: 0px 5px;
     border-radius: 5px;
     display: none;
-    background-color: #000000;
+    background-color: transparent;
 }
 
 .botao_cadastro {

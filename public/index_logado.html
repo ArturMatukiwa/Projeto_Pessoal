@@ -12,7 +12,7 @@
 <body>
     <div class="header">
         <div class="img_logo">
-            <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+            <img src="./Assets/logo_sopranos.png"  onclick="voltar()">
         </div>
         <ul class="navbar">
             <div class="nav1 nav">
@@ -22,17 +22,17 @@
                 <li><a href="./dashboard.html">Painel</a></li>
             </div>
             <div class="perfil" onclick="mudar_estado_perfil()">
-                <img src="./Assets/foto_perfil.png" alt="">
+                <img src="./Assets/foto_perfil.png" >
             </div>
         </ul>
     </div>
     <div class="area_perfil" id="perfil">
         <div class="perfil_sup">
-            <span>Olá NomeUsuário!</span>
-            <img src="./Assets/x.png" alt="" id="fechar" onclick="mudar_estado_perfil()">
+            <span id="b_nome">Olá  NomeUsuário!</span>
+            <img src="./Assets/x.png"  id="fechar" onclick="mudar_estado_perfil()">
         </div>
         <div class="txt_perfil">
-            <span>emailUsuario@.com</span>
+            <span id="b_email">emailUsuario@.com</span>
         </div>
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
@@ -54,8 +54,8 @@
                 <h3>Por que assistir?</h3>
                 <p>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices pretium elit, id tempor nisi molestie sed. Praesent efficitur, est at auctor mollis, est neque rutrum ipsum, eu mattis lectus massa ut metus. Vivamus ex quam, aliquam et bibendum</p>
                 <div class="ods_onu">
-                    <img src="./Assets/ODS03.jpg" alt="" width="150px">
-                    <img src="./Assets/ODS16.jpg" alt="" width="150px">
+                    <img src="./Assets/ODS03.jpg"  width="150px">
+                    <img src="./Assets/ODS16.jpg"  width="150px">
                 </div>
             </div>
         </div>
@@ -66,27 +66,31 @@
                 <h3>Influência e Relevância</h3>
                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam hic iusto veniam dicta molestiae, dolore nulla incidunt consequuntur ipsum, velit officiis quas! Excepturi nihil repellendus modi dolores nemo placeat aut.</p>
             </div>
-            <img src="./Assets/foto_influencia.jpg" alt="">
+            <img src="./Assets/foto_influencia.jpg" >
         </div>
     </div>
 
     <div class="footer">
         <div class="contatos">
-            <img src="./Assets/tony_footer.png" alt="" width="70px">
+            <img src="./Assets/tony_footer.png"  width="70px">
         <span>Nos contate:</span>
         <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s" alt="" width="50px">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png" alt="" width="40px">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s"  width="50px">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png"  width="40px">
         </div>
     </div>
         <div class="img_footer">
-            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png" alt="" width="70px">
+            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png"  width="70px">
         </div>
     </div>
 </body>
 </html>
 
 <script>
+    b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
+    b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
+
+
     function voltar() {
         document.location.href = './index_logado.html'
     }
