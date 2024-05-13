@@ -1,0 +1,97 @@
+
+
+body::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+.header {
+    position: static;
+    border-bottom: 0px;
+}
+
+.container {
+    background-image: url('../background-tony.jpg');
+    background-size: cover;
+    height: 87vh;
+    width: 100%;
+}
+
+.conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60vw;
+    height: 100%;
+}
+
+.conteudo_jogo h2, .card_jogo h2 {
+    color: #000000;
+    font-family: "Fjalla One", sans-serif;
+    font-size: 30px;
+}
+
+.conteudo_jogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px
+}
+
+.conteudo_jogo button {
+    height: 50px;
+    width: 130px;
+    font-size: 20px;
+    border-radius: 17px;
+    border: 2px solid #000000;
+    color: #f90201;
+    font-weight: bold;
+}
+
+.conteudo_jogo button:hover {
+    background-color: #e7e5e5;
+    color: #fd3232;
+    cursor: pointer;
+    font-weight: bolder;
+} 
+
+.conteudo_jogo button:active {
+    border: 3px solid #222121;
+    background-color: #c5c4c4;
+}
+
+.card_jogo {
+    width: 74%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    border: 2px solid #000000;
+    border-radius: 7px;
+    background-color: #160000;
+    box-shadow: 1px 1px 10px 7px #afaeae;
+}
+
+.card_jogo h2 {
+    color: #f90201 !important;
+}
+
+.jogo {
+    box-sizing: border-box;
+    border: 1px solid #f90201;
+    padding: 5px;
+    height: 80%;
+    width: 90%;
+    box-shadow: 1px 1px 10px 2px #f90201;
+    background-color: #dad8d8;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f99601;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+

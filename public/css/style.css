@@ -13,6 +13,20 @@ body {
     background-color: black;
 }
 
+body::-webkit-scrollbar {
+    width: 10px;               
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: transparent;        
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #f90201;    
+    border-radius: 3px;       
+    border: 2px solid #000000;  
+  }
+
 .header {
     display: flex;
     border-bottom: 1px solid #ffffff;

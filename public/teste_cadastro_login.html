@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Família Soprano - Cadastro</title>
+    <script src="./js/sessao.js"></script>
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- <link rel="stylesheet" href="./css/cadastro.css"> -->
+    <link rel="stylesheet" href="./css/teste_cadastro_login.css">
+    <link rel="shortcut icon" href="./Assets/icon.png">
+  </head>
+  <body>
+    <div class="header">
+      <div class="img_logo">
+           <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+          </div>
+      <div class="img_voltar">
+          <img src="./Assets/seta-voltar.png" alt="botao_voltar" onclick="voltar()">
+        </div>
+    </div>
+    <div class="container">
+        <div class="cadastro">
+          <div id="mensagem_validacao"></div>
+          <div class="area_cadastro">
+          <h2>FAÇA O SEU CADASTRO <br> E SE JUNTE A NÓS</h2>
+          <div class="campos_cadastro">
+            <label>
+              Nome
+              <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autofocus>
+            </label>
+            <label>
+              Email
+              <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required>
+              <div id="mensagem_email" class="mensagem" ></div>
+            </label>
+            <label>
+              Senha
+              <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required>
+              <div id="mensagem_senha" class="mensagem"></div>
+            </label>
+            <label>
+              Confirme sua senha
+              <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required>
+              <div id="mensagem_confirmacao" class="mensagem"></div>
+            </label>
+          </div>
+          <div class="botao_cadastro">
+            <button onclick="cadastrar()">Cadastrar</button>
+            <span>Já tem uma conta? Faça o seu <a href="./login.html">Login</a></span>
+          </div>
+          <div id="div_aguardar" class="loading-div">
+            <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
+          </div>
+        </div>
+        <img src="./Assets/familia_soprano.jpg" alt="">
+
+        <div class="login">
+            <div id="mensagem_validacao"></div>
+            <div class="img_login">
+                <img src="./Assets/nova_jersei_mafia.png" alt="Mafia de Nova Jersei">
+            </div>
+            <div class="area_login">
+                <h2>Realize seu login</h2>
+                <div class="campo_login">
+                    <label>
+                        Email
+                        <input type="text" id="ipt_email" onclick="preencher_email()" onblur="remover_outline()" required autofocus>
+                    </label>
+                    <label>
+                        Senha
+                        <input type="password" id="ipt_senha" onclick="preencher_senha()" onblur="remover_outline()" required>
+                    </label>
+                </div>
+                <div class="botao_login">
+                    <button onclick="entrar()">Acessar</button>
+                    <span>Ainda não tem uma conta? Faça seu <a href="./cadastro.html">Cadastro</a></span>
+                </div>
+                <div id="div_aguardar" class="loading-div">
+                    <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+  </div>
+</body>
+</html>
+
+<script>
+  var nome_validado = false;
+  var email_validado = false;
+  var senha_validada = false;
+  var confirmacao_validada = false;
+
+  function preencher_nome() {
+      var nome = ipt_nome.value;
+  
+      if(nome != '') {
+          document.getElementById('ipt_nome').style.outline = '1px solid #f99601';
+          nome_validado = true;
+      } else {
+        nome_validado = false
+      }
+  }
+  
+  function validar_email() {
+      var email = ipt_email.value;
+      var tamanho_email = email.length;
+      var ultimo_caracter = email[tamanho_email - 1];
+      var posicao_arroba = email.indexOf('@');
+      var posicao_ponto = email.indexOf('.');
+      var posicao_espaco = email.indexOf(' ');
+  
+      if(
+          posicao_arroba != -1 && 
+          posicao_ponto != -1 &&
+          posicao_ponto > posicao_arroba &&
+          posicao_arroba > 0 &&
+          ultimo_caracter != '.' &&
+          ultimo_caracter != '@' &&
+          posicao_ponto != posicao_arroba + 1 &&
+          posicao_espaco == -1
+      ) {
+          email_validado = true
+      } else {
+          email_validado = false
+      }
+  
+      if(email_validado || tamanho_email == 0) {
+          mensagem_email.innerHTML = ``;
+          document.getElementById('mensagem_email').style.display = 'none';
+          document.getElementById('ipt_email').style.outline = '1px solid #f99601';
+      }else {
+          document.getElementById('mensagem_email').style.display = 'block';
+          document.getElementById('ipt_email').style.outline = '2px solid #f90201';
+          mensagem_email.innerHTML = `Insira um email válido`;
+      }
+  }
+  
+  function validar_senha() {
+      var senha = ipt_senha.value;
+      var tamanho_senha = senha.length;
+      var posicao_espaco = senha.indexOf(' ');
+      
+      if(senha.length < 8 || !/[0-9]/.test(senha) || posicao_espaco != -1 ) {
+          senha_validada = false;
+      }
+      else {
+          senha_validada = true;
+      }
+  
+      if(senha_validada || tamanho_senha == 0) {
+          mensagem_senha.innerHTML = ``;
+          document.getElementById('mensagem_senha').style.display = 'none';
+          document.getElementById('ipt_senha').style.outline = '1px solid #f99601';
+  
+      } else if(posicao_espaco != -1) {
+          mensagem_senha.innerHTML = `Sua senha não deve conter espaços`;
+          document.getElementById('mensagem_senha').style.display = 'block';
+          document.getElementById('ipt_senha').style.outline = '2px solid #f90201';
+  
+      }else {
+          mensagem_senha.innerHTML = `Insira 8 caracteres e pelo menos 1 número`;
+          document.getElementById('mensagem_senha').style.display = 'block';
+          document.getElementById('ipt_senha').style.outline = '2px solid #f90201';
+          // document.getElementById('ipt_senha').style.outlineWidth = '2px';
+      }    
+  }
+  
+  function validar_confirmacao() {
+      var confirmacao = ipt_confirmacao.value;
+      var senha = ipt_senha.value;
+  
+      if(confirmacao == senha) {
+          confirmacao_validada = true;
+      } else {
+          confirmacao_validada = false;
+      }
+  
+      if(confirmacao_validada || confirmacao == '') {
+          mensagem_confirmacao.innerHTML = ``;
+          document.getElementById('mensagem_confirmacao').style.display = 'none';
+          document.getElementById('ipt_confirmacao').style.outline = '1px solid #f99601';
+      } else {
+          mensagem_confirmacao.innerHTML = `A senha está diferente da anterior`;
+          document.getElementById('mensagem_confirmacao').style.display = 'block'
+          document.getElementById('ipt_confirmacao').style.outline = '2px solid #f90201';
+  
+      }
+  }
+    // function cadastrar() {
+    //     var nomeVar = ipt_nome.value;
+    //     var emailVvar = ipt_nome.value;
+    //     var senhaVar = ipt_senha.value;
+    //     var confirmacaoVvar = ipt_confirmacao.value;
+  
+    //     if( nome == '' || email == '' || senha == '' || confirmacao == '') {
+    //         alert('PREENCHA TODOS OS CAMPOS');
+    //     }else if(!email_validado || !senha_validada || !confirmacao_validada) {
+    //         alert('CAMPOS INVÁLIDOS');
+    //     }else {
+    //         alert(`Cadastro realizado com sucesso!`);
+    //         document.location.href = './index_logado.html'
+    //     }
+    // }
+  
+    function remover_outline_nome() {
+        if(ipt_nome.value == '') {
+            document.getElementById('ipt_nome').style.outlineWidth = '0px';
+        }
+    }
+  
+    function remover_outline_email() {
+        if(ipt_email.value == '') {
+            document.getElementById('ipt_email').style.outlineWidth = '0px';
+        }
+    }
+  
+    function remover_outline_senha() {
+        if(ipt_senha.value == '') {
+            document.getElementById('ipt_senha').style.outlineWidth = '0px';
+        }
+    }
+  
+    function remover_outline_confirmacao() {
+        if(ipt_confirmacao.value == '') {
+            document.getElementById('ipt_confirmacao').style.outlineWidth = '0px';
+        }
+    }
+
+  function cadastrar() {
+    aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = ipt_nome.value;
+    var emailVar = ipt_email.value;
+    var senhaVar = ipt_senha.value;
+    var confirmacaoVar = ipt_confirmacao.value;
+    if (
+      nomeVar == '' ||
+      emailVar == '' ||
+      senhaVar == '' ||
+      confirmacaoVar == ''
+    ) {
+      mensagem_validacao.style.display = "block";
+      mensagem_validacao.innerHTML =
+        "Você deve preencher todos os campos!";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if (
+      !nome_validado ||
+      !email_validado ||
+      !senha_validada ||
+      !confirmacao_validada
+    ) {
+      mensagem_validacao.style.display = "block";
+      mensagem_validacao.innerHTML =
+        "Há campos inválidos!";
+
+      finalizarAguardar();
+      alert('ERRO')
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+    
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          mensagem_validacao.style.display = "block";
+          mensagem_validacao.style.color = '#0a7e06'
+          mensagem_validacao.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "5000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  // function listar() {
+  //   fetch("/empresas/listar", {
+  //     method: "GET",
+  //   })
+  //     .then(function (resposta) {
+  //       resposta.json().then((empresas) => {
+  //         empresas.forEach((empresa) => {
+  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+  //         });
+  //       });
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //     });
+  // }
+
+  function sumirMensagem() {
+    mensagem_validacao.style.display = "none";
+  }
+  
+  function voltar() {
+    document.location.href = './index.html'
+  }
+</script> 

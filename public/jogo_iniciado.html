@@ -5,21 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Família Soprano</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/jogo_memoria.css">
     <link rel="stylesheet" href="./css/style_logado.css">
     <link rel="shortcut icon" href="./assets/icon.png">
 </head>
-<body>
+<body onload="validar_jogo_iniciado()">
     <div class="header">
         <div class="img_logo">
             <img src="./Assets/logo_sopranos.png"  onclick="voltar()">
         </div>
         <ul class="navbar">
             <div class="nav1 nav">
-                <li><a href="" style=" color:#f90201;">Home</a></li>
+                <li><a href="./index_logado.html" >Home</a></li>
                 <li><a href="./personagens_logado.html">Personagens</a></li>
                 <li><a href="./premiacoes_logado.html">Premiações</a></li>
-                <li><a href="./jogo_memoria.html">Jogo da memória</a></li>
+                <li><a href="" style=" color:#f90201;">Jogo da memória</a></li>
                 <li><a href="./dashboard.html">Painel</a></li>
             </div>
             <div class="perfil" onclick="mudar_estado_perfil()">
@@ -27,7 +27,7 @@
             </div>
         </ul>
     </div>
-    <div class="area_perfil" id="perfil">
+    <div class="area_perfil" class="perfil">
         <div class="perfil_sup">
             <span id="b_nome">Olá  NomeUsuário!</span>
             <img src="./Assets/x.png"  id="fechar" onclick="mudar_estado_perfil()">
@@ -38,40 +38,17 @@
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
 
-    <div class="conteudo">
-        <div class="box">
-            <div class="texto">
-                <h3>Enredo</h3>
-                <p>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices pretium elit, id tempor nisi molestie sed. Praesent efficitur, est at auctor mollis, est neque rutrum ipsum, eu mattis lectus massa ut metus. Vivamus ex quam, aliquam et bibendum vel, interdum id lorem. In et quam vitae mauris convallis lacinia. ex in tortor dignissim consequat. Ut malesuada magna et egestas luctus.</p>
+    <div class="container">
+        <div class="conteudo">
+            <div class="card_jogo">
+                <h2>Jogo da memória</h2>
+                <div class="jogo">Jogo</div>
             </div>
-            <div class="imagem-enredo"></div>
         </div>
 
-        <hr/>
-        
-        <div class="box">
-            <div class="imagem-justif"></div>
-            <div class="justify texto">
-                <h3>Por que assistir?</h3>
-                <p>orem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ultrices pretium elit, id tempor nisi molestie sed. Praesent efficitur, est at auctor mollis, est neque rutrum ipsum, eu mattis lectus massa ut metus. Vivamus ex quam, aliquam et bibendum</p>
-                <div class="ods_onu">
-                    <img src="./Assets/ODS03.jpg"  width="150px">
-                    <img src="./Assets/ODS16.jpg"  width="150px">
-                </div>
-            </div>
-        </div>
-        <hr>
-    
-        <div class="box area_influencia">
-            <div class="influencia">
-                <h3>Influência e Relevância</h3>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quibusdam hic iusto veniam dicta molestiae, dolore nulla incidunt consequuntur ipsum, velit officiis quas! Excepturi nihil repellendus modi dolores nemo placeat aut.</p>
-            </div>
-            <img src="./Assets/foto_influencia.jpg" >
-        </div>
     </div>
 
-    <div class="footer">
+    <!-- <div class="footer">
         <div class="contatos">
             <img src="./Assets/tony_footer.png"  width="70px">
         <span>Nos contate:</span>
@@ -83,14 +60,12 @@
         <div class="img_footer">
             <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png"  width="70px">
         </div>
-    </div>
+    </div> -->
 </body>
-</html>
 
 <script>
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
     b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
-
 
     function voltar() {
         document.location.href = './index_logado.html'
@@ -98,7 +73,7 @@
 
     function mudar_estado_perfil() {
         var display = document.getElementById('perfil').style.display;
-
+        console.log(display)
         if(display == 'none' || display == '') {
             document.getElementById('perfil').style.display = 'flex'
         } else {
@@ -119,5 +94,12 @@
                 window.location = "./index.html";
             }, 3000); // apenas para exibir o loading
         // })
+    }
+
+    function jogar() {
+        document.getElementById('conteudo_jogo').style.display = 'none';
+        document.getElementById('jogo').style.display = 'flex';
+
+
     }
 </script>
