@@ -25,21 +25,21 @@
       <div class="campos_cadastro">
         <label>
           Nome
-          <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autofocus>
+          <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autocomplete="off" autofocus>
         </label>
         <label>
           Email
-          <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required>
+          <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required autocomplete="off">
           <div id="mensagem_email" class="mensagem" ></div>
         </label>
         <label>
           Senha
-          <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required>
+          <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required autocomplete="off">
           <div id="mensagem_senha" class="mensagem"></div>
         </label>
         <label>
           Confirme sua senha
-          <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required>
+          <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required autocomplete="off"> 
           <div id="mensagem_confirmacao" class="mensagem"></div>
         </label>
       </div>

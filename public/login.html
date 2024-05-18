@@ -29,11 +29,11 @@
             <div class="campo_login">
                 <label>
                     Email
-                    <input type="text" id="ipt_email" onclick="preencher_email()" onblur="remover_outline()" required autofocus>
+                    <input type="text" id="ipt_email" onclick="preencher_email()" onblur="remover_outline()" required autocomplete="off" autofocus>
                 </label>
                 <label>
                     Senha
-                    <input type="password" id="ipt_senha" onclick="preencher_senha()" onblur="remover_outline()" required>
+                    <input type="password" id="ipt_senha" onclick="preencher_senha()" onblur="remover_outline()" required autocomplete="off">
                 </label>
             </div>
             <div class="botao_login">
@@ -78,7 +78,7 @@
         var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
-            mensagem_validacao.style.display = "block"
+            mensagem_validacao.style.display = "block";
             mensagem_validacao.innerHTML = "Você deve preencher todos os campos!";
             finalizarAguardar();
             return false;
@@ -113,7 +113,6 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    sessionStorage.AQUARIOS = JSON.stringify(json.aquarios)
                     
                     mensagem_validacao.style.display = "block";
                     mensagem_validacao.style.color = '#0a7e06'
@@ -127,6 +126,9 @@
                 });
 
             } else {
+
+                mensagem_validacao.style.display = `block`;
+                mensagem_validacao.innerHTML = `ERRO! E-mail ou senha errados`;
 
                 console.log("Houve um erro ao tentar realizar o login!");
 

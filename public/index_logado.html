@@ -38,7 +38,9 @@
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
 
+    
     <div class="conteudo">
+        <div id="mensagem_sair"></div>
         <div class="box">
             <div class="texto">
                 <h3>Enredo</h3>
@@ -110,14 +112,18 @@
         // resposta.json().then(json => {
         //             console.log(json);
         //             console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = '';
-            sessionStorage.NOME_USUARIO = '';
-            sessionStorage.ID_USUARIO = '';
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
 
+        mensagem_sair.style.display = `block`;
+        mensagem_sair.innerHTML = `
+        Saindo...
+        `;
 
-            setTimeout(function () {
-                window.location = "./index.html";
-            }, 3000); // apenas para exibir o loading
+        setTimeout(function () {
+        window.location = "./index.html";
+        }, 3000); // apenas para exibir o loading
         // })
     }
 </script>

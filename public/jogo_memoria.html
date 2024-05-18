@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./css/style_logado.css">
     <link rel="shortcut icon" href="./assets/icon.png">
 </head>
-<body onload="validar_jogo_iniciado()">
+<body>
     <div class="header">
         <div class="img_logo">
             <img src="./Assets/logo_sopranos.png"  onclick="voltar()">
@@ -40,30 +40,138 @@
 
     <div class="container">
         <div class="conteudo">
-            <div class="conteudo_jogo">
+            <div class="area_jogo" id="area_jogo">
                 <h2>Clique para jogar</h2>
                 <button onclick="jogar()">Jogar</button>
             </div>
+            <div class="card_jogo" id="card_jogo">
+                <div class="jogo_sup">
+                    <h2>Jogo da memória</h2>
+                    <img src="./assets/seta-voltar.png" onclick="voltar()">
+                </div>
+                <div class="jogo" id="jogo">
+                    <!-- <div class="card">
+                        <div class="face frente"></div>
+                        <div class="face costas"></div>
+                    </div> -->
+                </div>
+            </div>
         </div>
-
     </div>
-
-    <!-- <div class="footer">
-        <div class="contatos">
-            <img src="./Assets/tony_footer.png"  width="70px">
-        <span>Nos contate:</span>
-        <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s"  width="50px">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png"  width="40px">
-        </div>
-    </div>
-        <div class="img_footer">
-            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png"  width="70px">
-        </div>
-    </div> -->
 </body>
 
 <script>
+
+    
+    const jogo = document.querySelector('.jogo');
+    
+    const characters = [
+        'carta_adriana',
+        'carta_aj',
+        'carta_carmela',
+        'carta_christopher',
+        'carta_dramelfi',
+        'carta_junior',
+        'carta_livia',
+        'carta_meadow',
+        'carta_paulie',
+        'carta_tony',
+    ];
+
+    const createElement = (tag, className) => {
+        const element = document.createElement(tag);
+        element.className = className;
+        return element;
+    }
+
+    let firstCard = '';
+    let secondCard = '';
+
+    const checkEndGame = () => {
+        const disabledCards = document.querySelectorAll('.disabled_card');
+
+        if(disabledCards.length == 20) {
+            alert('Parabéns, você conseguiu!');
+        }
+    }
+
+    const checkCards = () => {
+        const firstCharacter = firstCard.getAttribute('data-character');
+        const secondCharacter = secondCard.getAttribute('data-character');
+        if(firstCharacter === secondCharacter) {
+            
+            firstCard.firstChild.classList.add('disabled_card');
+            secondCard.firstChild.classList.add('disabled_card');
+            
+            firstCard = '';
+            secondCard = '';
+            setTimeout(() => {
+                checkEndGame();
+            }, 500)
+        } else {
+            setTimeout(() => {
+                firstCard.classList.remove('reveal_card');
+                secondCard.classList.remove('reveal_card');
+
+                firstCard = '';
+                secondCard = '';
+            }, 700)
+
+        }
+    }
+
+    const revealCard = ({ target }) => {
+
+        if(target.parentNode.className.includes('reveal_card')) {
+            return;
+        }
+
+        if(firstCard === '') {
+            target.parentNode.classList.add('reveal_card');
+            firstCard = target.parentNode;
+        } else if(secondCard === '') {
+            target.parentNode.classList.add('reveal_card');
+            secondCard = target.parentNode;
+
+            checkCards();
+        }
+
+    }
+
+    const createCard = (character) => {
+        const card = createElement('div', 'card'); 
+        const frente = createElement('div', 'face frente'); 
+        const costas = createElement('div', 'face costas');
+
+        frente.style.backgroundImage = `url('./assets/cartas_jogo/${character}.png')`;
+
+        card.appendChild(frente);
+        card.appendChild(costas);
+
+        card.addEventListener('click', revealCard);
+        card.setAttribute('data-character', character)
+
+        return card;
+    }
+    
+
+    const loadGame = () => {
+
+        const duplicateCharacters = [ ...characters, ...characters];
+
+        const shuffledArray = duplicateCharacters.sort( () => Math.random() - 0.5);
+
+
+        shuffledArray.forEach((character) =>{
+
+            const card = createCard(character);
+            jogo.appendChild(card);
+
+        });
+    }
+
+    loadGame();
+
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
     b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
 
@@ -97,7 +205,12 @@
     }
 
     function jogar() {
-        window.location.href = `./jogo_iniciado.html`
-
+        area_jogo.style.display = 'none';
+        card_jogo.style.display = 'flex'
+    }
+    
+    function voltar() {
+        card_jogo.style.display = 'none';
+        area_jogo.style.display = 'flex';
     }
 </script>

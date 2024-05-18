@@ -11,50 +11,61 @@
     <link rel="shortcut icon" href="./Assets/icon.png">
   </head>
   <body>
-    <div class="header">
-      <div class="img_logo">
-           <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
-          </div>
-      <div class="img_voltar">
-          <img src="./Assets/seta-voltar.png" alt="botao_voltar" onclick="voltar()">
+    <div class="container" id="container">
+      <div class="conteudo_cadastro_login">
+        <div class="header">
+          <div class="img_logo">
+               <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+              </div>
+          <div class="img_voltar">
+              <img src="./Assets/seta-voltar.png" alt="botao_voltar" onclick="voltar()">
+            </div>
         </div>
-    </div>
-    <div class="container">
         <div class="cadastro">
-          <div id="mensagem_validacao"></div>
-          <div class="area_cadastro">
-          <h2>FAÇA O SEU CADASTRO <br> E SE JUNTE A NÓS</h2>
-          <div class="campos_cadastro">
-            <label>
-              Nome
-              <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autofocus>
-            </label>
-            <label>
-              Email
-              <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required>
-              <div id="mensagem_email" class="mensagem" ></div>
-            </label>
-            <label>
-              Senha
-              <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required>
-              <div id="mensagem_senha" class="mensagem"></div>
-            </label>
-            <label>
-              Confirme sua senha
-              <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required>
-              <div id="mensagem_confirmacao" class="mensagem"></div>
-            </label>
+            <div id="mensagem_validacao"></div>
+            <div class="area_cadastro">
+            <h2>FAÇA O SEU CADASTRO <br> E SE JUNTE A NÓS</h2>
+            <div class="campos_cadastro">
+              <label>
+                Nome
+                <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autofocus>
+              </label>
+              <label>
+                Email
+                <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required>
+                <div id="mensagem_email" class="mensagem" ></div>
+              </label>
+              <label>
+                Senha
+                <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required>
+                <div id="mensagem_senha" class="mensagem"></div>
+              </label>
+              <label>
+                Confirme sua senha
+                <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required>
+                <div id="mensagem_confirmacao" class="mensagem"></div>
+              </label>
+            </div>            <div class="botao_cadastro">
+              <button onclick="cadastrar()">Cadastrar</button>
+              <span>Já tem uma conta? Faça o seu <span id="mudar_conteudo">Login</span></span>
+            </div>
+            <div id="div_aguardar" class="loading-div">
+              <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
+            </div>
           </div>
-          <div class="botao_cadastro">
-            <button onclick="cadastrar()">Cadastrar</button>
-            <span>Já tem uma conta? Faça o seu <a href="./login.html">Login</a></span>
-          </div>
-          <div id="div_aguardar" class="loading-div">
-            <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
-          </div>
+          <img src="./Assets/familia_soprano.jpg" alt="">
         </div>
-        <img src="./Assets/familia_soprano.jpg" alt="">
-
+      </div>
+      <div class="conteudo_cadastro_login">
+        <div class="header">
+          <div class="img_logo">
+              <img src="./Assets/logo_sopranos.png" alt="" onclick="voltar()">
+              </div>
+          <div class="img_voltar">
+              <img src="./Assets/seta-voltar.png" alt="botao_voltar" onclick="voltar()">
+            </div>
+        </div>
+        
         <div class="login">
             <div id="mensagem_validacao"></div>
             <div class="img_login">
@@ -74,13 +85,14 @@
                 </div>
                 <div class="botao_login">
                     <button onclick="entrar()">Acessar</button>
-                    <span>Ainda não tem uma conta? Faça seu <a href="./cadastro.html">Cadastro</a></span>
+                    <span>Ainda não tem uma conta? Faça seu <span id="mudar_conteudo">Cadastro</span></span>
                 </div>
                 <div id="div_aguardar" class="loading-div">
                     <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
                 </div>
             </div>
         </div>
+      </div>
     </div>
 
   </div>
@@ -229,6 +241,7 @@
         }
     }
 
+
   function cadastrar() {
     aguardar();
 
@@ -333,7 +346,11 @@
     mensagem_validacao.style.display = "none";
   }
   
+  function mudar_conteudo() {
+    window.scrollTo
+  }
+  
   function voltar() {
     document.location.href = './index.html'
   }
-</script> 
+</script>

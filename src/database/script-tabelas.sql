@@ -10,7 +10,7 @@ create database projeto_individual;
 use projeto_individual;
 
 create table usuario (
-idUsuario int auto_increment,
+idUsuario int primary key auto_increment,
 nome varchar(45),
 email varchar(45),
 senha varchar(45));
