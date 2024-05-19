@@ -39,32 +39,34 @@
     </div>
 
     <div class="container">
+        <div id="mensagem_sair"></div>
+        <div id="mensagem_jogo"></div>
         <div class="conteudo">
             <div class="area_jogo" id="area_jogo">
                 <h2>Clique para jogar</h2>
-                <button onclick="jogar()">Jogar</button>
+                <button id="btn_jogar" onclick="jogar()">Jogar</button>
             </div>
             <div class="card_jogo" id="card_jogo">
                 <div class="jogo_sup">
+                    <div class="informacoes">
+                        <span id="usuario"></span>
+                        <span>Tempo: <span id="timer">00</span></span>
+                    </div>
                     <h2>Jogo da memória</h2>
                     <img src="./assets/seta-voltar.png" onclick="voltar()">
                 </div>
                 <div class="jogo" id="jogo">
-                    <!-- <div class="card">
-                        <div class="face frente"></div>
-                        <div class="face costas"></div>
-                    </div> -->
                 </div>
+                <button id="btn_rejogar" onclick="replay()">Jogar Novamente</button>
             </div>
         </div>
     </div>
 </body>
 
 <script>
-
-    
     const jogo = document.querySelector('.jogo');
-    
+    let card = document.querySelector('.card')
+
     const characters = [
         'carta_adriana',
         'carta_aj',
@@ -91,7 +93,16 @@
         const disabledCards = document.querySelectorAll('.disabled_card');
 
         if(disabledCards.length == 20) {
-            alert('Parabéns, você conseguiu!');
+            clearInterval(loop);
+            setTimeout(() => {
+                mensagem_jogo.style.display = 'flex';
+                mensagem_jogo.innerHTML = `Jogo finalizado! <br>
+                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
+            }, 500)
+
+            setTimeout(() => {
+                btn_rejogar.style.display = 'block';
+            }, 1300)
         }
     }
 
@@ -99,10 +110,10 @@
         const firstCharacter = firstCard.getAttribute('data-character');
         const secondCharacter = secondCard.getAttribute('data-character');
         if(firstCharacter === secondCharacter) {
-            
+
             firstCard.firstChild.classList.add('disabled_card');
             secondCard.firstChild.classList.add('disabled_card');
-            
+
             firstCard = '';
             secondCard = '';
             setTimeout(() => {
@@ -147,20 +158,18 @@
 
         card.appendChild(frente);
         card.appendChild(costas);
-
+        
         card.addEventListener('click', revealCard);
         card.setAttribute('data-character', character)
 
         return card;
     }
-    
 
     const loadGame = () => {
 
         const duplicateCharacters = [ ...characters, ...characters];
 
         const shuffledArray = duplicateCharacters.sort( () => Math.random() - 0.5);
-
 
         shuffledArray.forEach((character) =>{
 
@@ -170,8 +179,38 @@
         });
     }
 
-    loadGame();
+    const startTimer = () => {
+        this.loop = setInterval(() => {
+            const currentTime = +timer.innerHTML;
+            timer.innerHTML = currentTime + 1;
+        }, 1000)
+    }
 
+    window.onload = () => {
+        loadGame();
+        startTimer();
+    }
+
+    const deleteCards = () => {
+    const card = document.querySelectorAll('.card');
+        for(var i = 0; i < card.length; i++) {
+            card[i].remove();
+        }
+    }
+
+    const replay = () => {
+    deleteCards();
+
+    mensagem_jogo.style.display = 'none';
+    btn_rejogar.style.display = 'none';
+    timer.innerHTML = `00`;
+
+    createCard();
+    loadGame();
+    startTimer();
+    }
+
+    usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
     b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
 
@@ -190,18 +229,18 @@
     }
 
     function voltar_deslogado() {
-        // resposta.json().then(json => {
-        //             console.log(json);
-        //             console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = '';
-            sessionStorage.NOME_USUARIO = '';
-            sessionStorage.ID_USUARIO = '';
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
 
+        mensagem_sair.style.display = `block`;
+        mensagem_sair.innerHTML = `
+        Saindo...
+        `;
 
-            setTimeout(function () {
-                window.location = "./index.html";
-            }, 3000); // apenas para exibir o loading
-        // })
+        setTimeout(function () {
+        window.location = "./index.html";
+        }, 3000); 
     }
 
     function jogar() {

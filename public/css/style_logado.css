@@ -1,7 +1,6 @@
 #mensagem_sair {
     position: absolute;
-    height: auto;
-    width: auto;
+    margin: 3px auto auto;
     box-sizing: border-box;
     color: #000000;   
     background-color: #f99601;
@@ -13,6 +12,7 @@
     padding:15px;
     display: none;
     background-color: #e2dcdc;
+    z-index: 15;
 }
 
 .perfil {

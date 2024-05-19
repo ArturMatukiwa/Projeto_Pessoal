@@ -1,11 +1,14 @@
 .container {
     box-sizing: border-box;
     display: flex;
-    align-items: center;
     justify-content: center;
     height: 550px;
     padding: 15px 5px;
     gap: 20px;
+}
+
+#mensagem_sair {
+    top: 12%;
 }
 
 .primeiro_container {
@@ -15,7 +18,7 @@
 .cards_conteudo {
     position: relative;
     width: 25%;
-    height: 100%;    
+    height: 100%;
     display: flex;
     align-items: center;
 }
@@ -28,6 +31,7 @@
     transition: .4s;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
 

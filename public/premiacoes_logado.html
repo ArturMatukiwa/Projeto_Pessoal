@@ -39,6 +39,7 @@
     </div>
 
     <div class="conteudo">
+        <div id="mensagem_sair"></div>
         <div class="area_premiacoes">
             <img src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2020/12/The-Sopranos-Cast.jpg?q=50&fit=contain&w=1140&h=&dpr=1.5" alt="">
             <h3>Premiações</h3>
@@ -109,17 +110,17 @@
     }
 
     function voltar_deslogado() {
-        resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = '';
-            sessionStorage.NOME_USUARIO = '';
-            sessionStorage.ID_USUARIO = '';
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
 
+        mensagem_sair.style.display = `block`;
+        mensagem_sair.innerHTML = `
+        Saindo...
+        `;
 
-            setTimeout(function () {
-                window.location = "./index.html";
-            }, 3000); // apenas para exibir o loading
-        })
+        setTimeout(function () {
+        window.location = "./index.html";
+        }, 3000); 
     }
 </script>
