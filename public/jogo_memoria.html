@@ -45,27 +45,59 @@
             <div class="area_jogo" id="area_jogo">
                 <h2>Clique para jogar</h2>
                 <button id="btn_jogar" onclick="jogar()">Jogar</button>
+                <button id="btn_jogar_dificil" onclick="jogarDificil()">Jogar (Difícil)</button>
             </div>
             <div class="card_jogo" id="card_jogo">
                 <div class="jogo_sup">
                     <div class="informacoes">
                         <span id="usuario"></span>
-                        <span>Tempo: <span id="timer">00</span></span>
+                        <span>Tempo: <span id="timer">0</span></span>
                     </div>
                     <h2>Jogo da memória</h2>
-                    <img src="./assets/seta-voltar.png" onclick="voltar()">
+                    <img src="./assets/seta-voltar.png" onclick="voltar_jogo()">
                 </div>
-                <div class="jogo" id="jogo">
-                </div>
+
+                <div class="jogo" id="jogo"></div>
+                <div class="jogo_dificil" id="jogo_dificil"></div>
+
                 <button id="btn_rejogar" onclick="replay()">Jogar Novamente</button>
             </div>
+
         </div>
     </div>
 </body>
 
 <script>
+    
+    var id = sessionStorage.ID_USUARIO;
+
+    console.log(sessionStorage.TENTATIVAS_USUARIO);
+    
+    var tentativas = sessionStorage.TENTATIVAS_USUARIO;
+
+    if(sessionStorage.TENTATIVAS_USUARIO == "undefined") {
+        tentativas = 0;
+    }
+    
+    usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
+    b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
+
+    const btn_jogar = document.getElementById('btn_jogar');
+    const btn_jogar_dificil = document.getElementById('btn_jogar_dificil');
+
     const jogo = document.querySelector('.jogo');
-    let card = document.querySelector('.card')
+    const jogo_dificil = document.querySelector('.jogo_dificil');
+    let card = document.querySelector('.card');
+
+    let isJogoPressed = false;
+    let isJogo_dificilPressed = false;
+
+
+    var tempo_jogo;
+    var modo_jogo;
+    var duplicateCharacters;
+
 
     const characters = [
         'carta_adriana',
@@ -80,6 +112,25 @@
         'carta_tony',
     ];
 
+    const characters_dificil = [
+        'carta_adriana',
+        'carta_aj',
+        'carta_carmela',
+        'carta_christopher',
+        'carta_dramelfi',
+        'carta_junior',
+        'carta_livia',
+        'carta_meadow',
+        'carta_paulie',
+        'carta_silvio',
+        'carta_bonpensiero',
+        'carta_bobby',
+        'carta_janice',
+        'carta_JohnnySack',
+    ];
+
+    let tamanho_lista;
+
     const createElement = (tag, className) => {
         const element = document.createElement(tag);
         element.className = className;
@@ -89,21 +140,73 @@
     let firstCard = '';
     let secondCard = '';
 
+    console.log(sessionStorage.ID_USUARIO)
+
+    if(tamanho_lista == 28) {
+        // console.log(`tem 28 cartas`)
+            if(tempo_jogo == 80) {
+            console.log(`deu 08 segundos`)
+            clearInterval(loop);
+
+            setTimeout(() => {
+                mensagem_jogo.style.display = 'flex';
+                mensagem_jogo.innerHTML = `Jogo finalizado! <br>
+                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
+            }, 500)
+            
+            setTimeout(() => {
+                btn_rejogar.style.display = 'block';
+            }, 1300)
+
+            }
+        } 
+    
+
     const checkEndGame = () => {
         const disabledCards = document.querySelectorAll('.disabled_card');
 
-        if(disabledCards.length == 20) {
+        if(disabledCards.length == tamanho_lista) {
             clearInterval(loop);
+            console.log(tempo_jogo);
             setTimeout(() => {
                 mensagem_jogo.style.display = 'flex';
                 mensagem_jogo.innerHTML = `Jogo finalizado! <br>
                 Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
             }, 500)
 
+            
+
             setTimeout(() => {
                 btn_rejogar.style.display = 'block';
             }, 1300)
-        }
+
+            fetch("/jogo/inserir", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+            tempoServer: tempo_jogo,
+            modoServer: modo_jogo,
+            idServer: id,
+            tentativasServer: tentativas
+            }),
+            })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                console.log('enviado para a inserção no banco')
+                } else {
+                throw "Houve um erro ao tentar realizar o insert!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+            };
     }
 
     const checkCards = () => {
@@ -127,7 +230,6 @@
                 firstCard = '';
                 secondCard = '';
             }, 700)
-
         }
     }
 
@@ -146,7 +248,6 @@
 
             checkCards();
         }
-
     }
 
     const createCard = (character) => {
@@ -158,37 +259,72 @@
 
         card.appendChild(frente);
         card.appendChild(costas);
-        
+
         card.addEventListener('click', revealCard);
         card.setAttribute('data-character', character)
 
         return card;
     }
 
-    const loadGame = () => {
 
-        const duplicateCharacters = [ ...characters, ...characters];
+    const loadGame = (lista) => {
+            let duplicateCharacters = [ ...lista, ...lista];
 
-        const shuffledArray = duplicateCharacters.sort( () => Math.random() - 0.5);
+            let shuffledArray = duplicateCharacters.sort( () => Math.random() - 0.5);
+    
+            shuffledArray.forEach((character) =>{
+    
+                const card = createCard(character);
 
-        shuffledArray.forEach((character) =>{
+                console.log(duplicateCharacters.length)
 
-            const card = createCard(character);
-            jogo.appendChild(card);
+                if(duplicateCharacters.length == 20) {
+                    jogo.appendChild(card);
+                } else if(duplicateCharacters.length == 28){
+                    jogo_dificil.appendChild(card);
+                }
 
-        });
+            });
+        tamanho_lista = duplicateCharacters.length;
     }
 
     const startTimer = () => {
         this.loop = setInterval(() => {
             const currentTime = +timer.innerHTML;
             timer.innerHTML = currentTime + 1;
+            tempo_jogo = timer.innerHTML;
+
+
+            if(tamanho_lista == 28) {
+            if(tempo_jogo == 50) {
+            console.log(`deu 50 segundos`)
+            clearInterval(loop);
+
+            const card = document.querySelectorAll('.card');
+            for(var i = 0; i < card.length; i++) {
+            // card[i].classList.add('disabled_card');
+            card[i].removeEventListener('click', revealCard);
+
+            }
+
+            setTimeout(() => {
+                mensagem_jogo.style.display = 'flex';
+                mensagem_jogo.innerHTML = `Jogo finalizado! <br>
+                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
+            }, 500)
+            
+            setTimeout(() => {
+                btn_rejogar.style.display = 'block';
+            }, 1300)
+
+            }
+        }
         }, 1000)
     }
 
     window.onload = () => {
-        loadGame();
-        startTimer();
+        // loadGame();
+        // startTimer();
     }
 
     const deleteCards = () => {
@@ -203,19 +339,15 @@
 
     mensagem_jogo.style.display = 'none';
     btn_rejogar.style.display = 'none';
-    timer.innerHTML = `00`;
-
-    createCard();
-    loadGame();
-    startTimer();
+    if(tamanho_lista == 20) {
+        jogar();
+    } else {
+        jogarDificil();
+    }
     }
 
-    usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
-    b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
-
     function voltar() {
-        document.location.href = './index_logado.html'
+        document.location.href = './index_logado.html';
     }
 
     function mudar_estado_perfil() {
@@ -245,11 +377,60 @@
 
     function jogar() {
         area_jogo.style.display = 'none';
-        card_jogo.style.display = 'flex'
+        card_jogo.style.display = 'flex';
+        jogo.style.display = 'grid'
+        isJogoPressed = true;
+        console.log(isJogoPressed);
+        console.log('Jogo (modo: normal) foi clicado');
+        timer.innerHTML = `0`;
+        loadGame(characters);
+        startTimer();
+        modo_jogo = 1;
+        console.log(modo_jogo)
+        tentativas++
+    }
+
+    function jogarDificil() {
+        area_jogo.style.display = 'none';
+        card_jogo.style.display = 'flex';
+        jogo_dificil.style.display = 'grid'
+        isJogo_dificilPressed = true;
+        console.log(isJogo_dificilPressed);
+        console.log('Jogo (modo: dificil) foi clicado');
+        timer.innerHTML = `0`;
+        loadGame(characters_dificil);
+        startTimer();
+        modo_jogo = 2
+        console.log(modo_jogo)
+        card_jogo.classList.add('card_dificil');
+        tentativas++
     }
     
-    function voltar() {
-        card_jogo.style.display = 'none';
+    function voltar_jogo() {
+        if(card_jogo.style.display == 'flex') {
+
+            card_jogo.style.display = 'none';
+        } else if(card_jogo_dificil.style.display == 'flex') {
+
+            card_jogo_dificil.style.display = 'none';
+        }
         area_jogo.style.display = 'flex';
+
+        if(jogo.style.display == 'grid') {
+            jogo.style.display = 'none';
+        } else if(jogo_dificil.style.display == 'grid') {
+            jogo_dificil.style.display = 'none'
+        }
+
+        if(card_jogo.className.includes('card_dificil')) {
+            card_jogo.classList.remove('card_dificil');
+        }
+
+        deleteCards();
+        clearInterval(loop);
+        timer.innerHTML = `0`;
+        timer_dificil.innerHTML = `0`
+
+        tentativas--;
     }
 </script>

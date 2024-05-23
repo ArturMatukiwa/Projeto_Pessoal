@@ -5,8 +5,12 @@ function autenticar(email, senha) {
     var instrucaoSql = `
         SELECT idUsuario, nome, email FROM usuario WHERE email = '${email}' AND senha = '${senha}';
     `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
+
+    var instrucaoSql2 = `
+        select count(idTentativa) from tentativa join usuario on idUsuario = fkUsuario where fkUsuario = (select idUsuario from usuario where email = '${email}' and senha = '${senha}'); 
+    `
+    console.log("Executando a instrução SQL: \n" + instrucaoSql + instrucaoSql2);
+    return database.executar(instrucaoSql, instrucaoSql2);
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucaoSql

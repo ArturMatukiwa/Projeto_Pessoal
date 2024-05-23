@@ -91,7 +91,12 @@
 
 .campos_cadastro input:focus {
     outline: 1px solid #f99601;
+    transition: .3s;
     /* outline: 1px solid #; */
+}
+
+.campos_invalidos {
+    outline: 2px solid #f90201 !important;
 }
 
 .mensagem{

@@ -6,6 +6,11 @@
     margin-top: 80px;
 }
 
+.box p span {
+    color: #f8cf17;
+    font-weight: bold;
+}
+
 .box {
     display: flex;
     width: 100%;

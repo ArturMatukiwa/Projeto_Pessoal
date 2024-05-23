@@ -27,11 +27,11 @@ body::-webkit-scrollbar-track {
 #mensagem_jogo {
     position: absolute;
     margin-top: 5px;
-    left: 37%;
+    left: 20%;
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    color: #f99601;
+    color: #4d0d0d;
     border-radius: 15px;
     border: 2px solid #000000;
     box-shadow: 5px 5px 25px #000000;
@@ -61,7 +61,7 @@ body::-webkit-scrollbar-track {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 7px
+    gap: 10px
 }
 
 .area_jogo button {
@@ -87,6 +87,15 @@ body::-webkit-scrollbar-track {
     background-color: #c5c4c4;
 }
 
+#btn_jogar_dificil {
+    background-color: #4d0d0d;
+    color: #ccc;
+} 
+
+#btn_jogar_dificil:active {
+    background-color: #160000;
+}
+
 .card_jogo {
     width: 61%;
     height: 95%;
@@ -98,6 +107,10 @@ body::-webkit-scrollbar-track {
     border-radius: 7px;
     background-color: #160000;
     box-shadow: 1px 1px 10px 7px #afaeae;
+}
+
+.modo_dificil {
+    width: 80%;
 }
 
 .card_jogo h2 {
@@ -148,12 +161,33 @@ body::-webkit-scrollbar-track {
     box-shadow: 1px 1px 10px 2px #f90201;
     background-color: #dad8d8;
     border-radius: 3px;
-    display: grid;
+    display: none;
     grid-template-columns: repeat(5, 100px);
     color: #f99601;
     font-size: 22px;
     font-weight: bold;
     gap: 6px;
+}
+
+.jogo_dificil {
+    box-sizing: border-box;
+    border: 1px solid #f90201;
+    padding: 10px;
+    height: 80%;
+    width: 90%;
+    box-shadow: 1px 1px 10px 2px #f90201;
+    background-color: #dad8d8;
+    border-radius: 3px;
+    display: none;
+    grid-template-columns: repeat(7, 100px);
+    color: #f99601;
+    font-size: 22px;
+    font-weight: bold;
+    gap: 6px;
+}
+
+.card_dificil {
+    width: 84.5%;
 }
 
 .card_jogo button {
@@ -209,7 +243,7 @@ body::-webkit-scrollbar-track {
 }
 
 .costas {
-    background-image: url('https://sm.ign.com/ign_ap/cover/s/sopranos-m/sopranos-movie_e9w6.jpg');
+    background-image: url('../assets/cartas_jogo/carta_costas.jpg');
     background-position: center;
     background-size: cover;
     backface-visibility: hidden;
@@ -221,4 +255,9 @@ body::-webkit-scrollbar-track {
 
 .disabled_card {
     filter: saturate(0);
+}
+
+.jogo_paralizado {
+    filter: saturate(0);
+    
 }

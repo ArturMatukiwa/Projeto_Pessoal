@@ -13,20 +13,29 @@ function autenticar(req, res) {
 
         usuarioModel.autenticar(email, senha)
             .then(
-                function (resultadoAutenticar) {
+                function (resultadoAutenticar, resultadoTentativas) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
+                    console.log(`Resultados: ${JSON.stringify(resultadoTentativas)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
-                                    res.json({
-                                        id: resultadoAutenticar[0].id,
-                                        nome: resultadoAutenticar[0].nome,
-                                        email: resultadoAutenticar[0].email,
-                                        senha: resultadoAutenticar[0].senha,
-                                    });
-            
-                        
+                        console.log(resultadoTentativas);
+                                    
+                        if(resultadoTentativas == undefined) {
+                            resultadoTentativas = 0;
+                        }
+
+                                    res.status(200).json({
+
+                                       id: resultadoAutenticar[0].idUsuario, 
+                                       nome: resultadoAutenticar[0].nome, 
+                                       email: resultadoAutenticar[0].email, 
+                                       senha: resultadoAutenticar[0].senha, 
+                                       tentativas: resultadoTentativas[0]
+                                    })
+
+                    console.log(resultadoTentativas[0]);    
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -49,7 +58,6 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-
 
     // Faça as validações dos valores
     if (nome == undefined) {

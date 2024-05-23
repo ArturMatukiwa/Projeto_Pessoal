@@ -29,19 +29,16 @@
             <div class="campo_login">
                 <label>
                     Email
-                    <input type="text" id="ipt_email" onclick="preencher_email()" onblur="remover_outline()" required autocomplete="off" autofocus>
+                    <input type="text" id="ipt_email" required autocomplete="off" autofocus>
                 </label>
                 <label>
                     Senha
-                    <input type="password" id="ipt_senha" onclick="preencher_senha()" onblur="remover_outline()" required autocomplete="off">
+                    <input type="password" id="ipt_senha" required autocomplete="off">
                 </label>
             </div>
             <div class="botao_login">
                 <button onclick="entrar()">Acessar</button>
                 <span>Ainda não tem uma conta? Faça seu <a href="./cadastro.html">Cadastro</a></span>
-            </div>
-            <div id="div_aguardar" class="loading-div">
-                <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
             </div>
         </div>
     </div>
@@ -50,44 +47,18 @@
 </html>
 
 <script>
-    // function preencher_email() {
-    //     var email = ipt_email.value;
-    //     if(email != '') {
-    //       document.getElementById('ipt_email').style.outline = '1px solid #f99601';
-    //     }
-    // }
-
-    // function preencher_senha() {
-    //     var senha = ipt_senha.value;
-    //     if(senha != '') {
-    //       document.getElementById('ipt_senha').style.outline = '1px solid #f99601';
-    //     }
-    // }
-
-    // function remover_outline() {
-    //     var input = document.getElementsByTagName('input');
-    //     if(input.value == '') {
-    //       input.style.outlineWidth = '0px';
-    //     }
-    // }
-
      function entrar() {
-        aguardar();
-
         var emailVar = ipt_email.value;
         var senhaVar = ipt_senha.value;
 
         if (emailVar == "" || senhaVar == "") {
             mensagem_validacao.style.display = "block";
             mensagem_validacao.innerHTML = "Você deve preencher todos os campos!";
-            finalizarAguardar();
             return false;
         }
         else {
             setInterval(sumirMensagem, 5000)
         }
-
-    
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
@@ -113,7 +84,8 @@
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
-                    
+                    sessionStorage.TENTATIVAS_USUARIO = json.tentativas;
+                
                     mensagem_validacao.style.display = "block";
                     mensagem_validacao.style.color = '#0a7e06'
                     mensagem_validacao.innerHTML =
@@ -126,7 +98,6 @@
                 });
 
             } else {
-
                 mensagem_validacao.style.display = `block`;
                 mensagem_validacao.innerHTML = `ERRO! E-mail ou senha errados`;
 
@@ -134,7 +105,6 @@
 
                 resposta.text().then(texto => {
                     console.error(texto);
-                    finalizarAguardar(texto);
                 });
             }
 

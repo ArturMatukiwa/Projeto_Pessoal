@@ -25,21 +25,21 @@
       <div class="campos_cadastro">
         <label>
           Nome
-          <input type="text" onkeyup="preencher_nome()" onblur="remover_outline_nome()" id="ipt_nome" required autocomplete="off" autofocus>
+          <input type="text" onkeyup="preencher_nome()" onblur="removerOutline(ipt_nome)" id="ipt_nome" required autocomplete="off" autofocus>
         </label>
         <label>
           Email
-          <input type="email" onkeyup="validar_email()" onblur="remover_outline_email()" id="ipt_email" required autocomplete="off">
+          <input type="email" onkeyup="validar_email()" onblur="removerOutline(ipt_email)" id="ipt_email" required autocomplete="off">
           <div id="mensagem_email" class="mensagem" ></div>
         </label>
         <label>
           Senha
-          <input type="password" onkeyup="validar_senha()" onblur="remover_outline_senha()" id="ipt_senha" required autocomplete="off">
+          <input type="password" onkeyup="validar_senha()" onblur="removerOutline(ipt_senha)" id="ipt_senha" required autocomplete="off">
           <div id="mensagem_senha" class="mensagem"></div>
         </label>
         <label>
           Confirme sua senha
-          <input type="password" onkeyup="validar_confirmacao()" onblur="remover_outline_confirmacao()" id="ipt_confirmacao" required autocomplete="off"> 
+          <input type="password" onkeyup="validar_confirmacao()" onblur="removerOutline(ipt_confirmacao)" id="ipt_confirmacao" required autocomplete="off"> 
           <div id="mensagem_confirmacao" class="mensagem"></div>
         </label>
       </div>
@@ -47,9 +47,9 @@
         <button onclick="cadastrar()">Cadastrar</button>
         <span>Já tem uma conta? Faça o seu <a href="./login.html">Login</a></span>
       </div>
-      <div id="div_aguardar" class="loading-div">
-        <!-- <img src="./assets/circle-loading.gif" id="loading-gif" /> -->
-      </div>
+      <!-- <div id="div_aguardar" class="loading-div">
+         <img src="./assets/circle-loading.gif" id="loading-gif" /> 
+      </div> -->
     </div>
     <img src="./Assets/familia_soprano.jpg" alt="">
   </div>
@@ -66,7 +66,6 @@
       var nome = ipt_nome.value;
   
       if(nome != '') {
-          document.getElementById('ipt_nome').style.outline = '1px solid #f99601';
           nome_validado = true;
       } else {
         nome_validado = false
@@ -99,14 +98,14 @@
       if(email_validado || tamanho_email == 0) {
           mensagem_email.innerHTML = ``;
           document.getElementById('mensagem_email').style.display = 'none';
-          document.getElementById('ipt_email').style.outline = '1px solid #f99601';
+          ipt_email.classList.remove('campos_invalidos');
       }else {
-          document.getElementById('mensagem_email').style.display = 'block';
-          document.getElementById('ipt_email').style.outline = '2px solid #f90201';
-          mensagem_email.innerHTML = `Insira um email válido`;
+        mensagem_email.innerHTML = `Insira um email válido`;
+        document.getElementById('mensagem_email').style.display = 'block';
+        ipt_email.classList.add('campos_invalidos');
       }
   }
-  
+
   function validar_senha() {
       var senha = ipt_senha.value;
       var tamanho_senha = senha.length;
@@ -122,18 +121,16 @@
       if(senha_validada || tamanho_senha == 0) {
           mensagem_senha.innerHTML = ``;
           document.getElementById('mensagem_senha').style.display = 'none';
-          document.getElementById('ipt_senha').style.outline = '1px solid #f99601';
+          ipt_senha.classList.remove('campos_invalidos');
   
       } else if(posicao_espaco != -1) {
           mensagem_senha.innerHTML = `Sua senha não deve conter espaços`;
           document.getElementById('mensagem_senha').style.display = 'block';
-          document.getElementById('ipt_senha').style.outline = '2px solid #f90201';
-  
+          ipt_senha.classList.add('campos_invalidos');
       }else {
           mensagem_senha.innerHTML = `Insira 8 caracteres e pelo menos 1 número`;
           document.getElementById('mensagem_senha').style.display = 'block';
-          document.getElementById('ipt_senha').style.outline = '2px solid #f90201';
-          // document.getElementById('ipt_senha').style.outlineWidth = '2px';
+          ipt_senha.classList.add('campos_invalidos');
       }    
   }
   
@@ -150,57 +147,21 @@
       if(confirmacao_validada || confirmacao == '') {
           mensagem_confirmacao.innerHTML = ``;
           document.getElementById('mensagem_confirmacao').style.display = 'none';
-          document.getElementById('ipt_confirmacao').style.outline = '1px solid #f99601';
+          ipt_confirmacao.classList.remove('campos_invalidos');
       } else {
           mensagem_confirmacao.innerHTML = `A senha está diferente da anterior`;
-          document.getElementById('mensagem_confirmacao').style.display = 'block'
-          document.getElementById('ipt_confirmacao').style.outline = '2px solid #f90201';
-  
+          document.getElementById('mensagem_confirmacao').style.display = 'block';
+          ipt_confirmacao.classList.add('campos_invalidos');
       }
   }
-    // function cadastrar() {
-    //     var nomeVar = ipt_nome.value;
-    //     var emailVvar = ipt_nome.value;
-    //     var senhaVar = ipt_senha.value;
-    //     var confirmacaoVvar = ipt_confirmacao.value;
-  
-    //     if( nome == '' || email == '' || senha == '' || confirmacao == '') {
-    //         alert('PREENCHA TODOS OS CAMPOS');
-    //     }else if(!email_validado || !senha_validada || !confirmacao_validada) {
-    //         alert('CAMPOS INVÁLIDOS');
-    //     }else {
-    //         alert(`Cadastro realizado com sucesso!`);
-    //         document.location.href = './index_logado.html'
-    //     }
-    // }
-  
-    function remover_outline_nome() {
-        if(ipt_nome.value == '') {
-            document.getElementById('ipt_nome').style.outlineWidth = '0px';
-        }
-    }
-  
-    function remover_outline_email() {
-        if(ipt_email.value == '') {
-            document.getElementById('ipt_email').style.outlineWidth = '0px';
-        }
-    }
-  
-    function remover_outline_senha() {
-        if(ipt_senha.value == '') {
-            document.getElementById('ipt_senha').style.outlineWidth = '0px';
-        }
-    }
-  
-    function remover_outline_confirmacao() {
-        if(ipt_confirmacao.value == '') {
-            document.getElementById('ipt_confirmacao').style.outlineWidth = '0px';
-        }
-    }
+    
+
+  function removerOutline(input){
+    input_acessada = input
+    input_acessada.style.display.outline = '0px solid #f90201';
+  } 
 
   function cadastrar() {
-    aguardar();
-
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var nomeVar = ipt_nome.value;
@@ -217,7 +178,6 @@
       mensagem_validacao.innerHTML =
         "Você deve preencher todos os campos!";
 
-      finalizarAguardar();
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
@@ -233,13 +193,11 @@
       mensagem_validacao.innerHTML =
         "Há campos inválidos!";
 
-      finalizarAguardar();
       alert('ERRO')
       return false;
     } else {
       setInterval(sumirMensagem, 5000);
     }
-    
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -269,34 +227,16 @@
           }, "5000");
 
           limparFormulario();
-          finalizarAguardar();
         } else {
           throw "Houve um erro ao tentar realizar o cadastro!";
         }
       })
       .catch(function (resposta) {
         console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
       });
 
     return false;
   }
-
-  // function listar() {
-  //   fetch("/empresas/listar", {
-  //     method: "GET",
-  //   })
-  //     .then(function (resposta) {
-  //       resposta.json().then((empresas) => {
-  //         empresas.forEach((empresa) => {
-  //           listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
-  //         });
-  //       });
-  //     })
-  //     .catch(function (resposta) {
-  //       console.log(`#ERRO: ${resposta}`);
-  //     });
-  // }
 
   function sumirMensagem() {
     mensagem_validacao.style.display = "none";

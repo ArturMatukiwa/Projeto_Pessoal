@@ -1,20 +1,30 @@
-.area_premiacoes {
-    margin-top: 100px;  
+.conteudo {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.area_premiacoes {
+    margin-top: 81px;  
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .area_premiacoes img {
-    width: 50%;
-    margin-left: auto;
+    height: 30%;
+    width: 40%;
+
 }
 
 .area_premiacoes h3 {
     color:#f90201;
     font-family: "Fjalla One", sans-serif;
     font-size: 50px;
-    margin-bottom: 10px;
-    margin-left: 50px;
+    margin: 20px 0px 10px 0px;
     text-align: center;
     border-left: 1px solid #f99601;
     border-right: 1px solid #f99601;
@@ -24,20 +34,25 @@
 }
 
 .premiacoes {
-    width: 50%;
-    height: 55vh;
-    margin-left: 50px;
+    width: 70%;
+    height: 40%;
     display: flex;
+    justify-content: center;
+    gap: 50px;
 }
 
 
 .premiacoes .prem_col {
     width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .premiacoes li {
     font-size: 25px;
     color: #f99601;
+    margin-top: 6px;
 }
 
 .premiacoes > ul li {
@@ -45,7 +60,7 @@
 }
 
 
-.premiacoes li:first-of-type {
+.premiacoes .prem_col:first-of-type li:first-of-type {
     list-style: url('../assets/emmy.png');
 }
 
