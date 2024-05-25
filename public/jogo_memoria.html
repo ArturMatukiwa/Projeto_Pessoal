@@ -71,14 +71,14 @@
     
     var id = sessionStorage.ID_USUARIO;
 
-    console.log(sessionStorage.TENTATIVAS_USUARIO);
+    // console.log(sessionStorage.TENTATIVAS_USUARIO);
     
     var tentativas = sessionStorage.TENTATIVAS_USUARIO;
 
     if(sessionStorage.TENTATIVAS_USUARIO == "undefined") {
         tentativas = 0;
     }
-    
+
     usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
     b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
@@ -140,26 +140,7 @@
     let firstCard = '';
     let secondCard = '';
 
-    console.log(sessionStorage.ID_USUARIO)
-
-    if(tamanho_lista == 28) {
-        // console.log(`tem 28 cartas`)
-            if(tempo_jogo == 80) {
-            console.log(`deu 08 segundos`)
-            clearInterval(loop);
-
-            setTimeout(() => {
-                mensagem_jogo.style.display = 'flex';
-                mensagem_jogo.innerHTML = `Jogo finalizado! <br>
-                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
-            }, 500)
-            
-            setTimeout(() => {
-                btn_rejogar.style.display = 'block';
-            }, 1300)
-
-            }
-        } 
+    // console.log(sessionStorage.ID_USUARIO) 
     
 
     const checkEndGame = () => {
@@ -181,18 +162,18 @@
             }, 1300)
 
             fetch("/jogo/inserir", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-            tempoServer: tempo_jogo,
-            modoServer: modo_jogo,
-            idServer: id,
-            tentativasServer: tentativas
-            }),
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+                tempoServer: tempo_jogo,
+                modoServer: modo_jogo,
+                idServer: id,
+                tentativasServer: tentativas
+                }),
             })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -296,8 +277,8 @@
 
 
             if(tamanho_lista == 28) {
-            if(tempo_jogo == 50) {
-            console.log(`deu 50 segundos`)
+            if(tempo_jogo == 80) {
+            console.log(`deu 80 segundos! jogo finalizado`)
             clearInterval(loop);
 
             const card = document.querySelectorAll('.card');
@@ -322,11 +303,6 @@
         }, 1000)
     }
 
-    window.onload = () => {
-        // loadGame();
-        // startTimer();
-    }
-
     const deleteCards = () => {
     const card = document.querySelectorAll('.card');
         for(var i = 0; i < card.length; i++) {
@@ -339,11 +315,11 @@
 
     mensagem_jogo.style.display = 'none';
     btn_rejogar.style.display = 'none';
-    if(tamanho_lista == 20) {
-        jogar();
-    } else {
-        jogarDificil();
-    }
+        if(tamanho_lista == 20) {
+            jogar();
+        } else {
+            jogarDificil();
+        }
     }
 
     function voltar() {
@@ -426,10 +402,23 @@
             card_jogo.classList.remove('card_dificil');
         }
 
+        console.log(btn_rejogar.style.display)
+        console.log(mensagem_jogo.style.display)
+
+        if(btn_rejogar.style.display == 'block') {
+            btn_rejogar.style.display = 'none'
+        }
+
+        console.log(btn_rejogar.style.display)
+        
+        if(mensagem_jogo.style.display == 'flex') {
+            mensagem_jogo.style.display = 'none'
+        }
+
+        console.log(mensagem_jogo.style.display)
         deleteCards();
         clearInterval(loop);
         timer.innerHTML = `0`;
-        timer_dificil.innerHTML = `0`
 
         tentativas--;
     }

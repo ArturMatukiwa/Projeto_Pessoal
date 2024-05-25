@@ -8,7 +8,8 @@ function autenticar(email, senha) {
 
     var instrucaoSql2 = `
         select count(idTentativa) from tentativa join usuario on idUsuario = fkUsuario where fkUsuario = (select idUsuario from usuario where email = '${email}' and senha = '${senha}'); 
-    `
+    `;
+    
     console.log("Executando a instrução SQL: \n" + instrucaoSql + instrucaoSql2);
     return database.executar(instrucaoSql, instrucaoSql2);
 }

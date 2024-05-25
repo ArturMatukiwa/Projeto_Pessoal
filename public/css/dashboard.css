@@ -5,10 +5,65 @@
 }
 
 .container_dashboard {
-    height: 680px;
+    margin-top: 81px;
+    height: 87vh;
+    display: flex;
+    align-items: center;
+    background-color: #000000;
 }
 
 .container_dashboard img {
     height: 100%;
-    width: 22%;
+    width: 18%;
+}
+
+.conteudo {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 30px;
+    align-items: center;
+}
+
+.rankings {
+    width: 81%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 120px;
+}
+
+.rankings table{
+    background-color: #4d0d0d;
+    /* border-radius: 20px; */
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.rankings col {
+    box-sizing: border-box;
+    /* border: 1px solid #ffffff; */
+    color: #000000;
+
+}
+
+.rankings td, .rankings th {
+    border: 2px solid #2d2c2c;
+}
+
+.rankings td {
+    padding: 15px;    
+}
+
+.rankings th {
+    padding: 20px;
+    color: #f8cf17;
+}
+
+.dashboard {
+    height: 50%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

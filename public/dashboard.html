@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/dashboard.css">
     <link rel="stylesheet" href="./css/style_logado.css">
     <link rel="shortcut icon" href="./assets/icon.png">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="header">
@@ -38,24 +39,48 @@
 
     <div class="container_dashboard">
         <img src="./Assets/christopher_dashboard.jpg" alt="">
-        <div class="dashboard"></div>
-    </div>
-
-    <div class="footer">
-        <div class="contatos">
-            <img src="./Assets/tony_footer.png" alt="" width="70px">
-        <span>Nos contate:</span>
-        <div>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYUYXW_VBPFv8qyCqqsUNd5_p5FpjE7iPPmw&s" alt="" width="50px">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Gmail_icon_%282020%29.svg/512px-Gmail_icon_%282020%29.svg.png" alt="" width="40px">
+        <div class="conteudo">
+            <div class="rankings">
+                <div class="ranking_normal">
+                    <table class="tabela_normal">
+                        <colgroup>
+                            <col/>
+                            <col/>
+                        </colgroup>
+                        <tr>
+                            <th>TESTE_NOME</th>
+                            <th>TESTE_TEMPO</th>
+                        </tr>
+                        <tr>
+                            <td>TESTE2_NOME</td>
+                            <td>TESTE2_TEMPO</td>
+                        </tr>
+                    </table>
+                </div>
+    
+                <div class="ranking_dificil">
+                    <table class="tabela_dificil">
+                        <tr>
+                            <th>TESTE_NOME</th>
+                            <th>TESTE_TEMPO</th>
+                        </tr>
+                        <tr>
+                            <td>TESTE2_NOME</td>
+                            <td>TESTE2_TEMPO</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="dashboard">
+                <canvas id="myChart2"></canvas>
+            </div>
         </div>
-    </div>
-        <div class="img_footer">
-            <img src="https://moodle.sptech.school/pluginfile.php/1/core_admin/logo/0x200/1692971033/sptech_principal_ciano.png" alt="" width="70px">
-        </div>
+        <button onclick="puxarDados()">TENTAR</button>
     </div>
 </body>
 </html>
+
+
 
 <script>
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
@@ -94,3 +119,104 @@
         })
     }
 </script>
+
+<script>
+
+    window.onload = () => {
+        criarGraficos();
+    }
+
+    function puxarDados() {
+        fetch("/jogo/buscar", {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.USUARIOS_GRAFICO = json.resultadoMediaTempo.nome
+                    sessionStorage.MEDIAS_GRAFICOS = json.resultadoMediaTempo.media
+                    sessionStorage.USUARIOS_NORMAL = json.resultadoRankingNormal.nome;
+                    sessionStorage.TEMPOS_NORMAL = json.resultadoRankingNormal.tempo;
+                    sessionStorage.USUARIOS_DIFICIL = json.resultadoRankingDificil.nome;
+                    sessionStorage.TEMPOS_DIFICIL = json.resultadoRankingDificil.tempo;
+                });
+
+            } else {
+                console.log("Houve um erro ao puxar os dados!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    const criarGraficos = () => {
+        const ctx = document.getElementById('myChart2');
+      
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+              label: 'Usuário logado',
+              data: [12, 19, 3, 5, 2, 3],
+              borderWidth: 1,
+              backgroundColor:'rgb(249, 2, 1)'
+            }]
+          },
+          
+          options: {
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#ffffff'
+                    } 
+                },
+                title: {
+                    display: true,
+                    text: 'Média de tempo por usuário',
+                    color: '#f99601',
+                    font: {
+                        size: 30,
+                        family: "'Fjalla One', sans-serif"
+                    }
+                }
+            },
+            scales: {
+              y: {
+                beginAtZero: true,
+                grid : {
+                    color: 'rgb(77, 13, 13, 0.8)'
+                },
+
+                ticks: {
+                    color: '#ffffff'
+                }
+              },
+
+              x: {
+                ticks: {
+                    color: '#ffffff'
+                }
+              }
+            }
+          }
+        });
+    }
+
+  </script>
+  
