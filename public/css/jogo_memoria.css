@@ -9,6 +9,10 @@ body::-webkit-scrollbar-track {
     border-bottom: 0px;
 }
 
+#mensagem_sair {
+    left: 46%
+}
+
 .container {
     background-image: url('../assets/background-tony.jpg');
     background-size: cover;
@@ -31,16 +35,21 @@ body::-webkit-scrollbar-track {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    color: #4d0d0d;
-    border-radius: 15px;
-    border: 2px solid #000000;
+    color: #000000;
+    border-radius:11px;
+    border: 2px solid #160000;
     box-shadow: 5px 5px 25px #000000;
     font-size: 20px;
     font-weight: bolder;
     padding:15px;
     display: none;
-    background-color: #e2dcdc;
+    background-color: #f41d1d;
     text-align: center;
+}
+
+#mensagem_jogo span {
+    font-weight: bold;
+    color: #dbd9d9;
 }
 
 .area_jogo {

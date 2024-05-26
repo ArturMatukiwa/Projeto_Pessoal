@@ -40,7 +40,8 @@
 
     <div class="container">
         <div id="mensagem_sair"></div>
-        <div id="mensagem_jogo"></div>
+        <div id="mensagem_jogo">Não foi dessa vez!😓<br>
+            Jogador: <span>Artur</span>, Tempo: <span>32 segundos</span></div>
         <div class="conteudo">
             <div class="area_jogo" id="area_jogo">
                 <h2>Clique para jogar</h2>
@@ -68,16 +69,13 @@
 </body>
 
 <script>
-    
-    var id = sessionStorage.ID_USUARIO;
 
+var id = sessionStorage.ID_USUARIO;
+
+
+
+console.log(`id do usuario: ${id}`)
     // console.log(sessionStorage.TENTATIVAS_USUARIO);
-    
-    var tentativas = sessionStorage.TENTATIVAS_USUARIO;
-
-    if(sessionStorage.TENTATIVAS_USUARIO == "undefined") {
-        tentativas = 0;
-    }
 
     usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
@@ -119,9 +117,9 @@
         'carta_christopher',
         'carta_dramelfi',
         'carta_junior',
-        'carta_livia',
         'carta_meadow',
         'carta_paulie',
+        'carta_tony',
         'carta_silvio',
         'carta_bonpensiero',
         'carta_bobby',
@@ -145,14 +143,14 @@
 
     const checkEndGame = () => {
         const disabledCards = document.querySelectorAll('.disabled_card');
-
+        
         if(disabledCards.length == tamanho_lista) {
             clearInterval(loop);
             console.log(tempo_jogo);
             setTimeout(() => {
                 mensagem_jogo.style.display = 'flex';
                 mensagem_jogo.innerHTML = `Jogo finalizado! <br>
-                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
+                Jogador: <span>${sessionStorage.NOME_USUARIO}</span>, Tempo: <span>${timer.innerHTML} segundos</span>`
             }, 500)
 
             
@@ -160,6 +158,9 @@
             setTimeout(() => {
                 btn_rejogar.style.display = 'block';
             }, 1300)
+
+            var tentativas = sessionStorage.TENTATIVAS_USUARIO;
+            console.log("tentativa atual: " + tentativas);
 
             fetch("/jogo/inserir", {
                 method: "POST",
@@ -273,8 +274,7 @@
         this.loop = setInterval(() => {
             const currentTime = +timer.innerHTML;
             timer.innerHTML = currentTime + 1;
-            tempo_jogo = timer.innerHTML;
-
+            tempo_jogo = Number(timer.innerHTML);
 
             if(tamanho_lista == 28) {
             if(tempo_jogo == 80) {
@@ -290,8 +290,10 @@
 
             setTimeout(() => {
                 mensagem_jogo.style.display = 'flex';
-                mensagem_jogo.innerHTML = `Jogo finalizado! <br>
-                Jogador: ${sessionStorage.NOME_USUARIO}, Tempo: ${timer.innerHTML} segundos`
+                mensagem_jogo.style.display.color = 'f41d1d';
+                mensagem_jogo.style.display.backgroundColor = '000000';
+                mensagem_jogo.innerHTML = `Não foi dessa vez!😓 <br>
+                Jogador: <span>${sessionStorage.NOME_USUARIO}</span>, Tempo:<span> ${timer.innerHTML} segundos</span>`
             }, 500)
             
             setTimeout(() => {
@@ -352,6 +354,8 @@
     }
 
     function jogar() {
+        console.log(id)
+
         area_jogo.style.display = 'none';
         card_jogo.style.display = 'flex';
         jogo.style.display = 'grid'
@@ -363,7 +367,7 @@
         startTimer();
         modo_jogo = 1;
         console.log(modo_jogo)
-        tentativas++
+        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
     }
 
     function jogarDificil() {
@@ -379,7 +383,7 @@
         modo_jogo = 2
         console.log(modo_jogo)
         card_jogo.classList.add('card_dificil');
-        tentativas++
+        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
     }
     
     function voltar_jogo() {
@@ -420,6 +424,6 @@
         clearInterval(loop);
         timer.innerHTML = `0`;
 
-        tentativas--;
+        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) - 1;
     }
 </script>

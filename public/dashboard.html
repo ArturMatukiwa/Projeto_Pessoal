@@ -37,36 +37,67 @@
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
 
+    <div id="mensagem_sair"></div>
     <div class="container_dashboard">
         <img src="./Assets/christopher_dashboard.jpg" alt="">
         <div class="conteudo">
             <div class="rankings">
                 <div class="ranking_normal">
+                    <h2>Ranking</h2>
                     <table class="tabela_normal">
-                        <colgroup>
-                            <col/>
-                            <col/>
-                        </colgroup>
                         <tr>
-                            <th>TESTE_NOME</th>
-                            <th>TESTE_TEMPO</th>
+                            <th>USUÁRIO</th>
+                            <th>TEMPO</th>
                         </tr>
                         <tr>
-                            <td>TESTE2_NOME</td>
-                            <td>TESTE2_TEMPO</td>
+                            <td class="usuario_normal">TESTE2_NOME</td>
+                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_normal">TESTE2_NOME</td>
+                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_normal">TESTE2_NOME</td>
+                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_normal">TESTE2_NOME</td>
+                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_normal">TESTE2_NOME</td>
+                            <td class="tempo_normal">TESTE2_TEMPO</td>
                         </tr>
                     </table>
                 </div>
     
                 <div class="ranking_dificil">
+                    <h2>Ranking(Dificil)</h2>
                     <table class="tabela_dificil">
                         <tr>
-                            <th>TESTE_NOME</th>
-                            <th>TESTE_TEMPO</th>
+                            <th>USUÁRIO</th>
+                            <th>TEMPO</th>
                         </tr>
                         <tr>
-                            <td>TESTE2_NOME</td>
-                            <td>TESTE2_TEMPO</td>
+                            <td class="usuario_dificil">TESTE2_NOME</td>
+                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_dificil">TESTE2_NOME</td>
+                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_dificil">TESTE2_NOME</td>
+                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_dificil">TESTE2_NOME</td>
+                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                        </tr>
+                        <tr>
+                            <td class="usuario_dificil">TESTE2_NOME</td>
+                            <td class="tempo_dificil">TESTE2_TEMPO</td>
                         </tr>
                     </table>
                 </div>
@@ -75,7 +106,6 @@
                 <canvas id="myChart2"></canvas>
             </div>
         </div>
-        <button onclick="puxarDados()">TENTAR</button>
     </div>
 </body>
 </html>
@@ -105,50 +135,111 @@
     }
 
     function voltar_deslogado() {
-        resposta.json().then(json => {
-                    console.log(json);
-                    console.log(JSON.stringify(json));
-            sessionStorage.EMAIL_USUARIO = '';
-            sessionStorage.NOME_USUARIO = '';
-            sessionStorage.ID_USUARIO = '';
+       
+        sessionStorage.EMAIL_USUARIO = '';
+        sessionStorage.NOME_USUARIO = '';
+        sessionStorage.ID_USUARIO = '';
 
 
-            setTimeout(function () {
-                window.location = "./index.html";
-            }, 3000); // apenas para exibir o loading
-        })
+        setTimeout(function () {
+        window.location = "./index.html";
+        }, 3000); // apenas para exibir o loading
+
     }
 </script>
 
 <script>
-
+    
     window.onload = () => {
-        criarGraficos();
+        puxarDados();
     }
-
+    
+    usuarios_grafico = [];
+    media_tempo_grafico = [];
+    
     function puxarDados() {
-        fetch("/jogo/buscar", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json"
-            },
-        }).then(function (resposta) {
+        fetch("/jogo/buscar").then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
-
+            
             if (resposta.ok) {
                 console.log(resposta);
+                
 
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.USUARIOS_GRAFICO = json.resultadoMediaTempo.nome
-                    sessionStorage.MEDIAS_GRAFICOS = json.resultadoMediaTempo.media
-                    sessionStorage.USUARIOS_NORMAL = json.resultadoRankingNormal.nome;
-                    sessionStorage.TEMPOS_NORMAL = json.resultadoRankingNormal.tempo;
-                    sessionStorage.USUARIOS_DIFICIL = json.resultadoRankingDificil.nome;
-                    sessionStorage.TEMPOS_DIFICIL = json.resultadoRankingDificil.tempo;
+                    console.log(json.length)
+                    for(var i = 0; i <  json.length; i++) {
+                        usuarios_grafico.push(json[i].nome)
+                        media_tempo_grafico.push(json[i].media)
+                    }  
+
+
+                    criarGraficos();
                 });
 
+            } else {
+                console.log("Houve um erro ao puxar os dados!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        fetch("/ranking/ranquear").then(function (resposta) {
+            console.log("ESTOU NO THEN DO ranquear()!")
+            
+            if (resposta.ok) {
+                console.log(resposta);
+                
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    console.log(json.length)
+                    console.log(json[0].modo)
+                    console.log(json[0].tempo)
+                    console.log(json[0].nome)
+
+                    var usuario_normal = document.querySelectorAll('.usuario_normal');
+                    var usuario_dificil = document.querySelectorAll('.usuario_dificil');
+
+                    var tempo_normal = document.querySelectorAll('.tempo_normal');
+                    var tempo_dificil = document.querySelectorAll('.tempo_dificil');
+                    console.log(usuario_normal)
+                    console.log(tempo_normal)
+                    console.log(usuario_dificil)
+                    console.log(tempo_dificil)
+
+                    var i_normal = 0;
+                    var i_dificil = 0;
+                    for(var i = 0; i < json.length; i++) {
+
+                        console.log(json[i].modo)
+                        if(json[i].modo == 'normal' && i_normal < usuario_normal.length) {
+
+                            // for(var i_normal = 0; i_normal < 5; i_normal++) {
+                                usuario_normal[i_normal].innerHTML = json[i].nome
+                                tempo_normal[i_normal].innerHTML = `${json[i].tempo}s`
+                            // }
+                            i_normal++;
+
+                        } else if (json[i].modo == 'dificil' && i_dificil < usuario_dificil.length){
+                            
+                            // for(var i_dificil = 0; i_dificil < 5; i_dificil++) {
+                                usuario_dificil[i_dificil].innerHTML = json[i].nome
+                                tempo_dificil[i_dificil].innerHTML = `${json[i].tempo}s`
+                            // }
+                            i_dificil++;
+                        }
+                    }
+                });
+                
+                criarGraficos();
             } else {
                 console.log("Houve um erro ao puxar os dados!");
 
@@ -165,15 +256,19 @@
     }
 
     const criarGraficos = () => {
+        // puxarDados();
+
         const ctx = document.getElementById('myChart2');
       
         new Chart(ctx, {
           type: 'bar',
           data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            // labels: usuarios_grafico,
+            labels: usuarios_grafico,
             datasets: [{
               label: 'Usuário logado',
-              data: [12, 19, 3, 5, 2, 3],
+            //   data: media_tempo_grafico,
+              data: media_tempo_grafico,
               borderWidth: 1,
               backgroundColor:'rgb(249, 2, 1)'
             }]
@@ -198,13 +293,17 @@
             },
             scales: {
               y: {
-                beginAtZero: true,
+                  beginAtZero: true,
                 grid : {
                     color: 'rgb(77, 13, 13, 0.8)'
                 },
-
                 ticks: {
                     color: '#ffffff'
+                },
+                title: {
+                    display: true,
+                    text: 'segundos',
+                    color: '#f99601'
                 }
               },
 
@@ -214,9 +313,8 @@
                 }
               }
             }
-          }
+        }
         });
     }
-
   </script>
   

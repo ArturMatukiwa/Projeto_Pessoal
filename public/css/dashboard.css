@@ -4,6 +4,10 @@
     margin-left: 70px;
 }
 
+#mensagem_sair {
+    left: 46%
+}
+
 .container_dashboard {
     margin-top: 81px;
     height: 87vh;
@@ -19,50 +23,68 @@
 
 .conteudo {
     display: flex;
-    flex-direction: column;
     width: 100%;
     gap: 30px;
     align-items: center;
+    justify-content: start;
 }
 
 .rankings {
-    width: 81%;
+    margin-top: 10px;
+    width: 45%;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 120px;
+    gap: 30px;
+}
+
+.rankings h2 {
+    color: #f99601;
+    font-family: 'Fjalla One', sans-serif
+
+}
+
+.ranking_normal, .ranking_dificil {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
 }
 
 .rankings table{
+    box-sizing: border-box;
     background-color: #4d0d0d;
-    /* border-radius: 20px; */
+    border-radius: 12px;
     overflow: hidden;
     border-collapse: collapse;
-}
-
-.rankings col {
-    box-sizing: border-box;
-    /* border: 1px solid #ffffff; */
-    color: #000000;
-
+    border: 8px solid #2d2c2c;
 }
 
 .rankings td, .rankings th {
-    border: 2px solid #2d2c2c;
-}
-
-.rankings td {
-    padding: 15px;    
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    text-align: center;
 }
 
 .rankings th {
     padding: 20px;
-    color: #f8cf17;
+    color: #ffffff;
+    background-color: #4d0d0d;
 }
 
+.rankings td {
+    background-color: #919191;
+    font-weight: bolder;
+    color:#4d0d0d;
+    padding: 6px;    
+
+}
+
+
 .dashboard {
-    height: 50%;
-    width: 60%;
+    height: 45%;
+    width: 65%;
     display: flex;
     align-items: center;
     justify-content: center;

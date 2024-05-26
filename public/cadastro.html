@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="cadastro">
-      <div id="mensagem_validacao"></div>
+      <div id="mensagem_validacao">Você deve preencher todos os campos!</div>
       <div class="area_cadastro">
       <h2>FAÇA O SEU CADASTRO <br> E SE JUNTE A NÓS</h2>
       <div class="campos_cadastro">
@@ -218,9 +218,9 @@
 
         if (resposta.ok) {
           mensagem_validacao.style.display = "block";
-          mensagem_validacao.style.color = '#0a7e06'
+          mensagem_validacao.style.backgroundColor = '#075a80d9'
           mensagem_validacao.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+            "Cadastro realizado com sucesso!";
 
           setTimeout(() => {
             window.location = "login.html";

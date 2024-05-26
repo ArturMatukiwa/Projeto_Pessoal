@@ -159,16 +159,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e70303;   
-    background-color: #f99601;
-    border-radius: 15px;
+    color: #ffffff;   
+    border-radius: 21px;
     border: 2px solid #000000;
     box-shadow: 5px 5px 25px #000000;
     font-size: 20px;
     font-weight: bolder;
     padding:15px;
     display: none;
-    background-color: #e2dcdc;
+    background-color: #d53606e4;
 }
 
 .footer {

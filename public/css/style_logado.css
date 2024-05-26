@@ -1,17 +1,18 @@
 #mensagem_sair {
-    position: absolute;
+    position: fixed;
     margin: 3px auto auto;
     box-sizing: border-box;
-    color: #000000;   
+    color: #bbbaba;   
     background-color: #f99601;
-    border-radius: 15px;
+    border-radius: 30px;
     border: 2px solid #000000;
     box-shadow: 5px 5px 25px #000000;
     font-size: 20px;
     font-weight: bolder;
     padding:15px;
     display: none;
-    background-color: #e2dcdc;
+    background-color: #e2dcdce5;
+    background-color: #6f0707dd;
     z-index: 15;
 }
 

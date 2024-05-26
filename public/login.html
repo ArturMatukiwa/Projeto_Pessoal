@@ -87,7 +87,7 @@
                     sessionStorage.TENTATIVAS_USUARIO = json.tentativas;
                 
                     mensagem_validacao.style.display = "block";
-                    mensagem_validacao.style.color = '#0a7e06'
+                    mensagem_validacao.style.backgroundColor = '#075a80d9'
                     mensagem_validacao.innerHTML =
                     `Bem vindo de volta ${sessionStorage.NOME_USUARIO}!`;
                     
@@ -108,11 +108,15 @@
                 });
             }
 
+            
+            
+            
         }).catch(function (erro) {
             console.log(erro);
         })
-
+        
         return false;
+        
     }
 
     function sumirMensagem() {

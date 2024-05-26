@@ -1,38 +1,21 @@
 var jogoModel = require("../models/jogoModel");
 
 function buscar(req, res) {
-    jogoModel.buscar().then(function(resultado) {
-        usuarioModel.buscar()
-        .then(
-            function (resultadoMediaTempo, resultadoRankingNormal, resultadoRankingDificil) {
+    jogoModel.buscar()
+        .then(function(resultadoMediaTempo) {  
                 console.log(`\nResultados encontrados: ${resultadoMediaTempo.length}`);
-                console.log(`\nResultados encontrados: ${resultadoRankingNormal.length}`);
-                console.log(`\nResultados encontrados: ${resultadoRankingDificil.length}`);
                 console.log(`Resultados: ${JSON.stringify(resultadoMediaTempo)}`); // transforma JSON em String
-                console.log(`Resultados: ${JSON.stringify(resultadoRankingNormal)}`); // transforma JSON em String
-                console.log(`Resultados: ${JSON.stringify(resultadoRankingDificil)}`); // transforma JSON em String
-                                res.status(200).json({
-                                    resultadoMediaTempo, 
-                                    resultadoRankingNormal,
-                                    resultadoRankingDificil
-                                })
-                console.log(resultadoTentativas[0]);    
+                res.status(200).json(resultadoMediaTempo)
+                // resultadoRankingNormal,
+                                // resultadoRankingDificil
             }
         ).catch(
             function (erro) {
                 console.log(erro);
-                console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                console.log("\nHouve um erro ao realizar a busca! Erro: ", erro.sqlMessage);
                 res.status(500).json(erro.sqlMessage);
             }
         );
-
-        //Irá voltar para o front-end como uma resposta em json
-        res.status(200).json(resultado);
-    }).catch(function(erro) {
-        res.status(500).json(erro.sqlMessage)
-        console.log( "\nHouve um erro ao realizar a busca! Erro: ",
-        erro.sqlMessage)
-    })
 }
 
 function inserir(req, res) {

@@ -13,18 +13,15 @@ function autenticar(req, res) {
 
         usuarioModel.autenticar(email, senha)
             .then(
-                function (resultadoAutenticar, resultadoTentativas) {
+                function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
-                    console.log(`Resultados: ${JSON.stringify(resultadoTentativas)}`); // transforma JSON em String
 
                     if (resultadoAutenticar.length == 1) {
-                        console.log(resultadoAutenticar);
-                        console.log(resultadoTentativas);
-                                    
-                        if(resultadoTentativas == undefined) {
-                            resultadoTentativas = 0;
-                        }
+                    //     if(resultadoTentativas == undefined) {
+                    //         resultadoTentativas = 0;
+                    //         console.log(resultadoTentativas)
+                    //     }
 
                                     res.status(200).json({
 
@@ -32,10 +29,9 @@ function autenticar(req, res) {
                                        nome: resultadoAutenticar[0].nome, 
                                        email: resultadoAutenticar[0].email, 
                                        senha: resultadoAutenticar[0].senha, 
-                                       tentativas: resultadoTentativas[0]
+                                       tentativas: resultadoAutenticar[0].tentativas
                                     })
-
-                    console.log(resultadoTentativas[0]);    
+    
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
