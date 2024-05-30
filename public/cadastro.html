@@ -35,6 +35,9 @@
         <label>
           Senha
           <input type="password" onkeyup="validar_senha()" onblur="removerOutline(ipt_senha)" id="ipt_senha" required autocomplete="off">
+          <div id="revelar_senha" class="olho_senha" onclick="revelarSenha()">
+            <img id="olho_revelar" src="./assets/olho_protegido.png">
+          </div>
           <div id="mensagem_senha" class="mensagem"></div>
         </label>
         <label>
@@ -236,6 +239,18 @@
       });
 
     return false;
+  }
+
+  function revelarSenha() {
+    if(ipt_senha.type == 'password') {
+      console.log(ipt_senha.type);
+      ipt_senha.type = 'text';
+      console.log(ipt_senha.type);
+      revelar_senha.innerHTML = `<img id="olho_revelar" src="./assets/olho_visivel.png">`;
+    } else {
+      ipt_senha.type = 'password';
+      revelar_senha.innerHTML = `<img id="olho_revelar" src="./assets/olho_protegido.png">`;
+    }
   }
 
   function sumirMensagem() {

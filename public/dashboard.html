@@ -149,7 +149,6 @@
 </script>
 
 <script>
-    
     window.onload = () => {
         puxarDados();
     }
@@ -163,7 +162,7 @@
             
             if (resposta.ok) {
                 console.log(resposta);
-                
+
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -172,9 +171,7 @@
                     for(var i = 0; i <  json.length; i++) {
                         usuarios_grafico.push(json[i].nome)
                         media_tempo_grafico.push(json[i].media)
-                    }  
-
-
+                    }
                     criarGraficos();
                 });
 
@@ -185,7 +182,6 @@
                     console.error(texto);
                 });
             }
-
         }).catch(function (erro) {
             console.log(erro);
         })
@@ -238,8 +234,8 @@
                         }
                     }
                 });
-                
-                criarGraficos();
+
+                // criarGraficos();
             } else {
                 console.log("Houve um erro ao puxar os dados!");
 
@@ -259,7 +255,11 @@
         // puxarDados();
 
         const ctx = document.getElementById('myChart2');
-      
+
+        if(Chart.getChart(ctx)) {
+            Chart.getChart(ctx).destroy()
+        }
+
         new Chart(ctx, {
           type: 'bar',
           data: {
@@ -273,7 +273,6 @@
               backgroundColor:'rgb(249, 2, 1)'
             }]
           },
-          
           options: {
             plugins: {
                 legend: {
@@ -306,7 +305,6 @@
                     color: '#f99601'
                 }
               },
-
               x: {
                 ticks: {
                     color: '#ffffff'

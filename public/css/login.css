@@ -92,6 +92,7 @@
     height: 65px;
     width: 80%;
     justify-content: space-between;
+    position: relative;
 }
 
 .campo_login input {
@@ -111,13 +112,30 @@
     /* outline: 1px solid #; */
 }
 
-.campo_login input:valid {
+/* .campo_login input:valid {
     outline: 1px solid #f99601;
-    /* outline: 1px solid #; */
 }
 
 .campo_login input:invalid {
     outline: 0px solid #f99601;
+} */
+
+.campo_login input:focus + .olho_senha #olho_revelar {
+    opacity: 1;
+}
+
+.campo_login label .olho_senha {
+    position: absolute;
+    right: 49px;
+    top: 36px;
+}
+
+#olho_revelar {
+    opacity: 0.3;
+}
+
+.olho_senha:hover {
+    cursor: pointer;
 }
 
 .botao_login {

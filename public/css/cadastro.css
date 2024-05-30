@@ -95,8 +95,26 @@
     /* outline: 1px solid #; */
 }
 
+.campos_cadastro input:focus + .olho_senha #olho_revelar {
+    opacity: 1;
+}
+
 .campos_invalidos {
     outline: 2px solid #f90201 !important;
+}
+
+.campos_cadastro .olho_senha {
+    right: 48px;
+    top: 32px;
+    position: absolute;
+}
+
+#olho_revelar {
+    opacity: 0.3;
+}
+
+.olho_senha:hover {
+    cursor: pointer;
 }
 
 .mensagem{
