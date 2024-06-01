@@ -168,6 +168,21 @@ body::-webkit-scrollbar-track {
     font-size: 22px;
 }
 
+.jogo_sup .img_voltar {
+    width: 55px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jogo_sup .img_voltar:hover {
+    cursor: pointer;    
+    border-radius: 20%;
+    background-color: #2a0202;
+    
+}
+
 .jogo_sup img {
     box-sizing: border-box;
     height: 40px;
@@ -175,9 +190,6 @@ body::-webkit-scrollbar-track {
     /* margin-left: 100px; */
 }
 
-.jogo_sup img:hover {
-    cursor: pointer;
-}
 
 .jogo {
     box-sizing: border-box;

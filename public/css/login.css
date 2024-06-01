@@ -63,6 +63,18 @@
     padding:15px;
     display: none;
     background-color: #d53606e4;
+    animation: aparecer 0.4s ease;
+    z-index: 2;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .img_login {
@@ -160,6 +172,10 @@
 
 #olho_revelar {
     opacity: 0.3;
+}
+
+#olho_revelar:active {
+    opacity: 1;
 }
 
 .olho_senha:hover {
