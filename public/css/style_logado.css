@@ -14,6 +14,17 @@
     background-color: #e2dcdce5;
     background-color: #6f0707dd;
     z-index: 15;
+    animation: aparecer 1s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 .perfil {

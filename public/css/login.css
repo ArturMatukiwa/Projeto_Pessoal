@@ -1,6 +1,6 @@
 .header .img_voltar {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 50px;
     margin-right: 30px;
     display: flex;
     align-items: center;
@@ -8,8 +8,8 @@
 }
 
 .header .img_voltar img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
 }
 
 .header .img_voltar:hover {
@@ -20,15 +20,32 @@
     border-bottom: 2px solid #4d0d0d;
     position: static;
     height: 50px;
+}
 
+.header .img_voltar:hover {
+    border-radius: 20%;
+    background-color: #2a0202;
 }
 
 .login {
     display: flex;
     justify-content: center;
-    height: 92vh;
+    height:92.6vh;
     align-items: center;
     background-color: #160000;
+    animation: show-up 0.8s ease;
+}
+
+@keyframes show-up {
+    from {
+        opacity: 0.4;
+        filter: saturate(0.2);
+    }
+
+    to {
+        opacity: 1;
+        filter: saturate(1);
+    }
 }
 
 #mensagem_validacao {
@@ -66,6 +83,17 @@
     align-items: center;
     width: 40%;
     height: 60%;
+    animation: show-login 0.8s ease;
+}
+
+@keyframes show-login {
+    from {
+        transform: translateX(-20px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
 }
 
 .area_login h2 {

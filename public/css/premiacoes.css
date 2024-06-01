@@ -7,6 +7,8 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
+    height: 100vh;
+
 }
 
 .area_premiacoes {
@@ -19,7 +21,7 @@
 }
 
 .area_premiacoes img {
-    height: 30%;
+    height: 40%;
     width: 40%;
 
 }
@@ -39,7 +41,7 @@
 
 .premiacoes {
     width: 70%;
-    height: 40%;
+    height: 30%;
     display: flex;
     justify-content: center;
     gap: 50px;

@@ -23,15 +23,14 @@
 
 .conteudo {
     display: flex;
-    width: 100%;
-    gap: 30px;
+    width: 75%;
     align-items: center;
     justify-content: start;
 }
 
 .rankings {
     margin-top: 10px;
-    width: 45%;
+    width: 35%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -41,6 +40,7 @@
 
 .rankings h2 {
     color: #f99601;
+    /* color: rgb(249, 55, 1); */
     font-family: 'Fjalla One', sans-serif
 
 }
@@ -65,12 +65,13 @@
     box-sizing: border-box;
     border: 1px solid #ccc;
     text-align: center;
+    height: 35px;
 }
 
 .rankings th {
     padding: 20px;
     color: #ffffff;
-    background-color: #4d0d0d;
+    background-color: rgb(77, 13, 13);
 }
 
 .rankings td {
@@ -83,8 +84,8 @@
 
 
 .dashboard {
-    height: 45%;
-    width: 65%;
+    height: 100%;
+    width: 70%;
     display: flex;
     align-items: center;
     justify-content: center;

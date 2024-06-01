@@ -50,24 +50,24 @@
                             <th>TEMPO</th>
                         </tr>
                         <tr>
-                            <td class="usuario_normal">TESTE2_NOME</td>
-                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                            <td class="usuario_normal"></td>
+                            <td class="tempo_normal"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_normal">TESTE2_NOME</td>
-                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                            <td class="usuario_normal"></td>
+                            <td class="tempo_normal"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_normal">TESTE2_NOME</td>
-                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                            <td class="usuario_normal"></td>
+                            <td class="tempo_normal"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_normal">TESTE2_NOME</td>
-                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                            <td class="usuario_normal"></td>
+                            <td class="tempo_normal"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_normal">TESTE2_NOME</td>
-                            <td class="tempo_normal">TESTE2_TEMPO</td>
+                            <td class="usuario_normal"></td>
+                            <td class="tempo_normal"></td>
                         </tr>
                     </table>
                 </div>
@@ -80,24 +80,24 @@
                             <th>TEMPO</th>
                         </tr>
                         <tr>
-                            <td class="usuario_dificil">TESTE2_NOME</td>
-                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                            <td class="usuario_dificil"></td>
+                            <td class="tempo_dificil"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_dificil">TESTE2_NOME</td>
-                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                            <td class="usuario_dificil"></td>
+                            <td class="tempo_dificil"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_dificil">TESTE2_NOME</td>
-                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                            <td class="usuario_dificil"></td>
+                            <td class="tempo_dificil"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_dificil">TESTE2_NOME</td>
-                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                            <td class="usuario_dificil"></td>
+                            <td class="tempo_dificil"></td>
                         </tr>
                         <tr>
-                            <td class="usuario_dificil">TESTE2_NOME</td>
-                            <td class="tempo_dificil">TESTE2_TEMPO</td>
+                            <td class="usuario_dificil"></td>
+                            <td class="tempo_dificil"></td>
                         </tr>
                     </table>
                 </div>
@@ -140,6 +140,10 @@
         sessionStorage.NOME_USUARIO = '';
         sessionStorage.ID_USUARIO = '';
 
+        mensagem_sair.style.display = `block`;
+        mensagem_sair.innerHTML = `
+        Saindo...
+        `;
 
         setTimeout(function () {
         window.location = "./index.html";
@@ -163,11 +167,11 @@
             if (resposta.ok) {
                 console.log(resposta);
 
-
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    console.log(json.length)
+                    console.log(json.length);
+
                     for(var i = 0; i <  json.length; i++) {
                         usuarios_grafico.push(json[i].nome)
                         media_tempo_grafico.push(json[i].media)
@@ -216,26 +220,20 @@
                     for(var i = 0; i < json.length; i++) {
 
                         console.log(json[i].modo)
-                        if(json[i].modo == 'normal' && i_normal < usuario_normal.length) {
 
-                            // for(var i_normal = 0; i_normal < 5; i_normal++) {
-                                usuario_normal[i_normal].innerHTML = json[i].nome
-                                tempo_normal[i_normal].innerHTML = `${json[i].tempo}s`
-                            // }
+                        if(json[i].modo == 'normal' && i_normal < usuario_normal.length) {
+                            usuario_normal[i_normal].innerHTML = json[i].nome
+                            tempo_normal[i_normal].innerHTML = `${json[i].tempo}s`
                             i_normal++;
 
                         } else if (json[i].modo == 'dificil' && i_dificil < usuario_dificil.length){
-                            
-                            // for(var i_dificil = 0; i_dificil < 5; i_dificil++) {
-                                usuario_dificil[i_dificil].innerHTML = json[i].nome
-                                tempo_dificil[i_dificil].innerHTML = `${json[i].tempo}s`
-                            // }
+                            usuario_dificil[i_dificil].innerHTML = json[i].nome
+                            tempo_dificil[i_dificil].innerHTML = `${json[i].tempo}s`
                             i_dificil++;
                         }
                     }
                 });
 
-                // criarGraficos();
             } else {
                 console.log("Houve um erro ao puxar os dados!");
 
@@ -252,8 +250,6 @@
     }
 
     const criarGraficos = () => {
-        // puxarDados();
-
         const ctx = document.getElementById('myChart2');
 
         if(Chart.getChart(ctx)) {
@@ -263,21 +259,31 @@
         new Chart(ctx, {
           type: 'bar',
           data: {
-            // labels: usuarios_grafico,
             labels: usuarios_grafico,
             datasets: [{
-              label: 'Usuário logado',
-            //   data: media_tempo_grafico,
               data: media_tempo_grafico,
               borderWidth: 1,
-              backgroundColor:'rgb(249, 2, 1)'
-            }]
+              backgroundColor:[
+                'rgb(249, 2, 1)', 
+                'rgb(249, 55, 1)'
+            ],
+              barThickness: 57,
+              borderRadius: 15,
+              borderColor: 'black',
+              borderWidth: 6
+            }],
           },
           options: {
+            indexAxis: 'y',
             plugins: {
+                tooltip: {
+                    enabled: true,
+
+                },
                 legend: {
+                    display: false,
                     labels: {
-                        color: '#ffffff'
+                        color: '#ffffff',
                     } 
                 },
                 title: {
@@ -288,27 +294,47 @@
                         size: 30,
                         family: "'Fjalla One', sans-serif"
                     }
-                }
+                },
             },
             scales: {
               y: {
-                  beginAtZero: true,
+                beginAtZero: true,
                 grid : {
-                    color: 'rgb(77, 13, 13, 0.8)'
+                    
+                    tickColor: 'rgba(249, 150, 1, 0.299)'
                 },
                 ticks: {
-                    color: '#ffffff'
+                    color: '#ffffff',
+                    font:{
+                            size: 17,
+                            family: "'Fjalla One', sans-serif"
+                        }, 
                 },
-                title: {
-                    display: true,
-                    text: 'segundos',
-                    color: '#f99601'
+                border: {
+                    color:'rgba(249, 150, 1, 0.299)'  
                 }
               },
               x: {
+                grid : {
+                    color: 'rgba(249, 150, 1, 0.4)',
+                    tickColor: 'rgba(249, 150, 1, 0)',
+                    lineWidth: 2
+                },
                 ticks: {
-                    color: '#ffffff'
-                }
+                    color: '#f99601',
+                    callback: function (value) {
+                        return value + 's'
+                    },
+                    font:{
+                        size: 15,
+                        family: "'Fjalla One', sans-serif"
+                    }, 
+                },
+                // title: {
+                //     display: true,
+                //     text: 'segundos',
+                //     color: '#f99601'
+                // },
               }
             }
         }

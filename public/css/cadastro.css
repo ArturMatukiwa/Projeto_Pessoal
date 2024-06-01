@@ -1,6 +1,6 @@
 .header .img_voltar {
-    width: 60px;
-    height: 60px;
+    width: 55px;
+    height: 50px;
     margin-right: 30px;
     display: flex;
     align-items: center;
@@ -8,8 +8,13 @@
 }
 
 .header .img_voltar img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
+}
+
+.header .img_voltar:hover {
+    border-radius: 20%;
+    background-color: #2a0202;
 }
 
 .header .img_voltar:hover {
@@ -26,8 +31,23 @@
     box-sizing: border-box;
     display: flex;
     justify-content:center;
-    height:95vh;
+    height:92.6vh;
     background-color: #160000;
+    animation: show-up 0.8s ease;
+}
+
+@keyframes show-up {
+    from {
+        opacity: 0.4;
+        filter: saturate(0.2);
+
+    }
+
+    to {
+        opacity: 1;
+        filter: saturate(1);
+
+    }
 }
 
 .area_cadastro {
@@ -38,6 +58,17 @@
     justify-content: space-evenly;
     align-items: center;
     width: 40%;
+    animation: show-cadastro 0.8s ease;
+}
+
+@keyframes show-cadastro {
+    from {
+        transform: translateX(20px);
+    }
+
+    to {
+        transform: translateX(0px);
+    }
 }
 
 .area_cadastro h2 {

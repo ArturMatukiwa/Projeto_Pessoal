@@ -40,8 +40,7 @@
 
     <div class="container">
         <div id="mensagem_sair"></div>
-        <div id="mensagem_jogo">Não foi dessa vez!😓<br>
-            Jogador: <span>Artur</span>, Tempo: <span>32 segundos</span></div>
+        <div id="mensagem_jogo"></div>
         <div class="conteudo">
             <div class="area_jogo" id="area_jogo">
                 <h2>Clique para jogar</h2>
@@ -72,8 +71,6 @@
 
 var id = sessionStorage.ID_USUARIO;
 
-
-
 console.log(`id do usuario: ${id}`)
     // console.log(sessionStorage.TENTATIVAS_USUARIO);
 
@@ -97,7 +94,8 @@ console.log(`id do usuario: ${id}`)
     var duplicateCharacters;
 
 
-    const characters = [
+    const characters = {
+        normal : [
         'carta_adriana',
         'carta_aj',
         'carta_carmela',
@@ -107,10 +105,10 @@ console.log(`id do usuario: ${id}`)
         'carta_livia',
         'carta_meadow',
         'carta_paulie',
-        'carta_tony',
-    ];
-
-    const characters_dificil = [
+        'carta_tony'
+        ],
+        
+        dificil: [
         'carta_adriana',
         'carta_aj',
         'carta_carmela',
@@ -124,8 +122,9 @@ console.log(`id do usuario: ${id}`)
         'carta_bonpensiero',
         'carta_bobby',
         'carta_janice',
-        'carta_JohnnySack',
-    ];
+        'carta_JohnnySack'
+        ]
+    }
 
     let tamanho_lista;
 
@@ -148,7 +147,7 @@ console.log(`id do usuario: ${id}`)
             clearInterval(loop);
             console.log(tempo_jogo);
             setTimeout(() => {
-                mensagem_jogo.style.display = 'flex';
+                mensagem_jogo.style.display = 'block';
                 mensagem_jogo.innerHTML = `Jogo finalizado! <br>
                 Jogador: <span>${sessionStorage.NOME_USUARIO}</span>, Tempo: <span>${timer.innerHTML} segundos</span>`
             }, 500)
@@ -159,8 +158,12 @@ console.log(`id do usuario: ${id}`)
                 btn_rejogar.style.display = 'block';
             }, 1300)
 
+            sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
+            
             var tentativas = sessionStorage.TENTATIVAS_USUARIO;
             console.log("tentativa atual: " + tentativas);
+
+
 
             fetch("/jogo/inserir", {
                 method: "POST",
@@ -168,13 +171,13 @@ console.log(`id do usuario: ${id}`)
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
+
                 tempoServer: tempo_jogo,
                 modoServer: modo_jogo,
                 idServer: id,
                 tentativasServer: tentativas
                 }),
+
             })
             .then(function (resposta) {
                 console.log("resposta: ", resposta);
@@ -277,7 +280,7 @@ console.log(`id do usuario: ${id}`)
             tempo_jogo = Number(timer.innerHTML);
 
             if(tamanho_lista == 28) {
-            if(tempo_jogo == 80) {
+            if(tempo_jogo == 5) {
             console.log(`deu 80 segundos! jogo finalizado`)
             clearInterval(loop);
 
@@ -289,7 +292,7 @@ console.log(`id do usuario: ${id}`)
             }
 
             setTimeout(() => {
-                mensagem_jogo.style.display = 'flex';
+                mensagem_jogo.style.display = 'block';
                 mensagem_jogo.style.display.color = 'f41d1d';
                 mensagem_jogo.style.display.backgroundColor = '000000';
                 mensagem_jogo.innerHTML = `Não foi dessa vez!😓 <br>
@@ -363,11 +366,10 @@ console.log(`id do usuario: ${id}`)
         console.log(isJogoPressed);
         console.log('Jogo (modo: normal) foi clicado');
         timer.innerHTML = `0`;
-        loadGame(characters);
+        loadGame(characters.normal);
         startTimer();
         modo_jogo = 1;
         console.log(modo_jogo)
-        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
     }
 
     function jogarDificil() {
@@ -378,12 +380,11 @@ console.log(`id do usuario: ${id}`)
         console.log(isJogo_dificilPressed);
         console.log('Jogo (modo: dificil) foi clicado');
         timer.innerHTML = `0`;
-        loadGame(characters_dificil);
+        loadGame(characters.dificil);
         startTimer();
         modo_jogo = 2
         console.log(modo_jogo)
         card_jogo.classList.add('card_dificil');
-        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
     }
 
     function voltar_jogo() {
@@ -415,7 +416,7 @@ console.log(`id do usuario: ${id}`)
 
         console.log(btn_rejogar.style.display)
 
-        if(mensagem_jogo.style.display == 'flex') {
+        if(mensagem_jogo.style.display == 'block') {
             mensagem_jogo.style.display = 'none'
         }
 

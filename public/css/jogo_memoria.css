@@ -45,11 +45,22 @@ body::-webkit-scrollbar-track {
     display: none;
     background-color: #f41d1d;
     text-align: center;
+    animation: deslizar-baixo 1s ease;
 }
 
 #mensagem_jogo span {
     font-weight: bold;
     color: #dbd9d9;
+}
+
+@keyframes deslizar-baixo {
+    from {
+        margin-top: -10px;
+    }
+
+    to {
+        margin-top: 0px;
+    }
 }
 
 .area_jogo {
@@ -99,6 +110,7 @@ body::-webkit-scrollbar-track {
 #btn_jogar_dificil {
     background-color: #4d0d0d;
     color: #ccc;
+    
 } 
 
 #btn_jogar_dificil:active {
@@ -117,6 +129,12 @@ body::-webkit-scrollbar-track {
     background-color: #160000;
     box-shadow: 1px 1px 10px 7px #afaeae;
 }
+
+.card_jogo, .card_dificil{
+    animation: show-up 0.6s ease
+}
+
+
 
 .modo_dificil {
     width: 80%;
@@ -213,6 +231,7 @@ body::-webkit-scrollbar-track {
     display: none;
     z-index: 10;
     transition: 0.7s;
+    animation: aparecer-botao .8s ease;
 }
 
 .card_jogo button:hover {
@@ -225,6 +244,16 @@ body::-webkit-scrollbar-track {
 .card_jogo button:active {
     transition: 0s;
     border: 3px solid #ccc;
+}
+
+@keyframes aparecer-botao {
+    from {
+        scale: 0.8
+    }
+
+    to {
+        scale: 1
+    }
 }
 
 .card {
