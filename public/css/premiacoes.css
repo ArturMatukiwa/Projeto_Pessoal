@@ -1,30 +1,36 @@
 #mensagem_sair {
     top: 81px;
 }
+.container > img {
+    height: 100%;
+    width: auto;
+}
+
+.container {
+    height: 77vh;
+    display: flex;
+    width: 100%;
+    margin-top: 80px;
+}
 
 .conteudo {
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
-    height: 100vh;
-
+    height: 100%;
+    width: 60%;
 }
 
 .area_premiacoes {
-    margin-top: 81px;  
-    margin-bottom: 20px;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
     align-items: center;
     width: 100%;
+    height: fit-content;
+    gap: 20px;
 }
 
-.area_premiacoes img {
-    height: 40%;
-    width: 40%;
-
-}
 
 .area_premiacoes h3 {
     color:#f90201;
@@ -37,13 +43,15 @@
     border-radius:7px;
     padding: 0px 7px;
     width: fit-content;
+    /* height: 40%; */
 }
 
 .premiacoes {
-    width: 70%;
-    height: 30%;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 50px;
 }
 
@@ -53,6 +61,16 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.prem_total {
+    width: 100%;
+    color: #f8cf17;
+    font-size: 26px;
+    text-align: center;
+    font-weight: bolder;
+    font-family: "Fjalla One", sans-serif;
+
 }
 
 .premiacoes li {

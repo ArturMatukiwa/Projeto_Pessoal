@@ -19,6 +19,7 @@
                 <li><a href="./index_logado.html" >Home</a></li>
                 <li><a href="./personagens_logado.html">Personagens</a></li>
                 <li><a href="./premiacoes_logado.html">Premiações</a></li>
+                <li><a href="./sobre_nos_logado.html">Sobre Mim</a></li>
                 <li><a href="" style=" color:#f90201;">Jogo da memória</a></li>
                 <li><a href="./dashboard.html">Painel</a></li>
             </div>
@@ -74,7 +75,6 @@
 var id = sessionStorage.ID_USUARIO;
 
 console.log(`id do usuario: ${id}`)
-    // console.log(sessionStorage.TENTATIVAS_USUARIO);
 
     usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
@@ -282,7 +282,7 @@ console.log(`id do usuario: ${id}`)
             tempo_jogo = Number(timer.innerHTML);
 
             if(tamanho_lista == 28) {
-            if(tempo_jogo == 5) {
+            if(tempo_jogo == 70) {
             console.log(`deu 80 segundos! jogo finalizado`)
             clearInterval(loop);
 
@@ -426,7 +426,5 @@ console.log(`id do usuario: ${id}`)
         deleteCards();
         clearInterval(loop);
         timer.innerHTML = `0`;
-
-        sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) - 1;
     }
 </script>

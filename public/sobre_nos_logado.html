@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Família Soprano</title>
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="./css/premiacoes.css">
+    <link rel="stylesheet" href="./css/sobre_nos.css">
     <link rel="stylesheet" href="./css/style_logado.css">
     <link rel="shortcut icon" href="./assets/icon.png">
 </head>
@@ -16,15 +16,15 @@
         </div>
         <ul class="navbar">
             <div class="nav1 nav">
-                <li><a href="index_logado.html">Home</a></li>
+                <li><a href="./index_logado.html">Home</a></li>
                 <li><a href="./personagens_logado.html">Personagens</a></li>
-                <li><a href="" style=" color:#f90201;">Premiações</a></li>
-                <li><a href="./sobre_nos_logado.html">Sobre Mim</a></li>
+                <li><a href="./premiacoes_logado.html">Premiações</a></li>
+                <li><a href="" style=" color:#f90201;">Sobre mim</a></li>
                 <li><a href="./jogo_memoria.html">Jogo da memória</a></li>
                 <li><a href="./dashboard.html">Painel</a></li>
             </div>
-            <div class="perfil">
-                <img src="./Assets/foto_perfil.png" alt="" onclick="mudar_estado_perfil()">
+            <div class="perfil" onclick="mudar_estado_perfil()">
+                <img src="./Assets/foto_perfil.png" >
             </div>
         </ul>
     </div>
@@ -39,66 +39,22 @@
         <span onclick="voltar_deslogado()">Sair da conta</span>
     </div>
 
-    <div class="container">
-        <img src="./assets/premiacoes.jpg" alt="">
-        <div class="conteudo">
-            <div class="area_premiacoes">
-                <h3>Premiações</h3>
-                <span class="prem_total">🏆126 PRÊMIOS AO TOTAL!</span>
-                <div class="premiacoes">
-                    <ul class="prem_col">
-                        <li>AFIs 
-                            <ul>
-                                <li>2004</li>
-                                <li>2007</li>
-                            </ul>
-                        </li>
-                        <li> PGA Awards
-                            <ul>
-                                <li>2000</li>
-                                <li>2005</li>
-                                <li>2008</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="prem_col">
-                        <li>Globo de  Ouro
-                            <ul>
-                                <li>2000</li>
-                            </ul>
-                        </li>
-                        <li>Grammy
-                            <ul>
-                                <li>2006</li>
-                                <li>2005</li>
-                                <li>2004-2003</li>
-                            </ul>
-                        </li>
-                        <li>WGA
-                            <ul>
-                                <li>2007</li>
-                            </ul>
-                        </li>
-                    </ul>
-                    <ul class="prem_col">
-                        <li>DGA
-                            <ul>
-                                <li>2003</li>
-                                <li>2000</li>
-                            </ul>
-                        </li>
-                        <li>Banff
-                            <ul>
-                                <li>2004</li>
-                                <li>2001</li>
-                                <li>2000</li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+    <div class="conteudo">
+        <div id="mensagem_sair"></div>
+        <div class="box">
+            <img src="https://media.fstatic.com/JKy1u3EEUT5K61GbbxCk-bFw_4Y=/322x478/smart/filters:format(webp)/media/movies/covers/2016/03/familia-soprano-1a-temporada_t19413.jpg">
+            <div class="texto">
+                <h2>QUEM SOU</h2>
+                <p>
+                    Olá, meu nome é Artur, tenho 18 anos e curso o curso de Análise e Desenvolvimento de Sistemas na SPtech, desde criança me interesso em assistir filmes e séries em meu tempo livre e foi assim que descobri a famosa e notável série "Família Soprano".
+                    <br> Desenvolvi esse site com ela como tema com o objetivo de apresenta-la a mais pessoas e mostrar o por que eu a tenho como a minha favorita dentre todas que já assisti, espero que goste!
+
+                </p>
             </div>
+            
         </div>
     </div>
+    
 
     <div class="footer">
         <div class="contatos">
@@ -119,6 +75,7 @@
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
     b_email.innerHTML = `Email: ${sessionStorage.EMAIL_USUARIO}`;
 
+
     function voltar() {
         document.location.href = './index_logado.html'
     }
@@ -131,10 +88,6 @@
         } else {
             document.getElementById('perfil').style.display = 'none'
         }
-    }
-
-    function fechar_perfil() {
-        document.getElementById('perfil').style.display = 'none';
     }
 
     function voltar_deslogado() {

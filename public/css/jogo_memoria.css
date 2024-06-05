@@ -35,7 +35,7 @@ body::-webkit-scrollbar-track {
     box-sizing: border-box;
     justify-content: center;
     align-items: center;
-    color: #000000;
+    color: #ccc;
     border-radius:11px;
     border: 2px solid #160000;
     box-shadow: 5px 5px 25px #000000;
@@ -49,8 +49,8 @@ body::-webkit-scrollbar-track {
 }
 
 #mensagem_jogo span {
-    font-weight: bold;
-    color: #dbd9d9;
+    font-weight: bolder;
+    color: #000000;
 }
 
 @keyframes deslizar-baixo {
