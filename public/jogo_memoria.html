@@ -87,10 +87,6 @@ console.log(`id do usuario: ${id}`)
     const jogo_dificil = document.querySelector('.jogo_dificil');
     let card = document.querySelector('.card');
 
-    let isJogoPressed = false;
-    let isJogo_dificilPressed = false;
-
-
     var tempo_jogo;
     var modo_jogo;
     var duplicateCharacters;
@@ -364,8 +360,6 @@ console.log(`id do usuario: ${id}`)
         area_jogo.style.display = 'none';
         card_jogo.style.display = 'flex';
         jogo.style.display = 'grid'
-        isJogoPressed = true;
-        console.log(isJogoPressed);
         console.log('Jogo (modo: normal) foi clicado');
         timer.innerHTML = `0`;
         loadGame(characters.normal);
@@ -378,8 +372,6 @@ console.log(`id do usuario: ${id}`)
         area_jogo.style.display = 'none';
         card_jogo.style.display = 'flex';
         jogo_dificil.style.display = 'grid'
-        isJogo_dificilPressed = true;
-        console.log(isJogo_dificilPressed);
         console.log('Jogo (modo: dificil) foi clicado');
         timer.innerHTML = `0`;
         loadGame(characters.dificil);
