@@ -74,7 +74,7 @@
 
 var id = sessionStorage.ID_USUARIO;
 
-console.log(`id do usuario: ${id}`)
+// console.log(`id do usuario: ${id}`)
 
     usuario.innerHTML = sessionStorage.NOME_USUARIO;
     b_nome.innerHTML = `Olá ${sessionStorage.NOME_USUARIO}`;
@@ -143,7 +143,7 @@ console.log(`id do usuario: ${id}`)
         
         if(disabledCards.length == tamanho_lista) {
             clearInterval(loop);
-            console.log(tempo_jogo);
+            // console.log(tempo_jogo);
             setTimeout(() => {
                 mensagem_jogo.style.display = 'block';
                 mensagem_jogo.innerHTML = `Jogo finalizado! <br>
@@ -159,7 +159,7 @@ console.log(`id do usuario: ${id}`)
             sessionStorage.TENTATIVAS_USUARIO = Number(sessionStorage.TENTATIVAS_USUARIO) + 1;
             
             var tentativas = sessionStorage.TENTATIVAS_USUARIO;
-            console.log("tentativa atual: " + tentativas);
+            // console.log("tentativa atual: " + tentativas);
 
 
 
@@ -181,7 +181,7 @@ console.log(`id do usuario: ${id}`)
                 console.log("resposta: ", resposta);
 
                 if (resposta.ok) {
-                console.log('enviado para a inserção no banco')
+                // console.log('enviado para a inserção no banco')
                 } else {
                 throw "Houve um erro ao tentar realizar o insert!";
                 }
@@ -259,7 +259,7 @@ console.log(`id do usuario: ${id}`)
     
                 const card = createCard(character);
 
-                console.log(duplicateCharacters.length)
+                // console.log(duplicateCharacters.length)
 
                 if(duplicateCharacters.length == 20) {
                     jogo.appendChild(card);
@@ -279,12 +279,11 @@ console.log(`id do usuario: ${id}`)
 
             if(tamanho_lista == 28) {
             if(tempo_jogo == 70) {
-            console.log(`deu 80 segundos! jogo finalizado`)
+            // console.log(`deu 80 segundos! jogo finalizado`)
             clearInterval(loop);
 
             const card = document.querySelectorAll('.card');
             for(var i = 0; i < card.length; i++) {
-            // card[i].classList.add('disabled_card');
             card[i].removeEventListener('click', revealCard);
 
             }
@@ -355,29 +354,29 @@ console.log(`id do usuario: ${id}`)
     }
 
     function jogar() {
-        console.log(id)
+        // console.log(id)
 
         area_jogo.style.display = 'none';
         card_jogo.style.display = 'flex';
         jogo.style.display = 'grid'
-        console.log('Jogo (modo: normal) foi clicado');
+        // console.log('Jogo (modo: normal) foi clicado');
         timer.innerHTML = `0`;
         loadGame(characters.normal);
         startTimer();
         modo_jogo = 1;
-        console.log(modo_jogo)
+        // console.log(modo_jogo)
     }
 
     function jogarDificil() {
         area_jogo.style.display = 'none';
         card_jogo.style.display = 'flex';
         jogo_dificil.style.display = 'grid'
-        console.log('Jogo (modo: dificil) foi clicado');
+        // console.log('Jogo (modo: dificil) foi clicado');
         timer.innerHTML = `0`;
         loadGame(characters.dificil);
         startTimer();
         modo_jogo = 2
-        console.log(modo_jogo)
+        // console.log(modo_jogo)
         card_jogo.classList.add('card_dificil');
     }
 
@@ -401,20 +400,20 @@ console.log(`id do usuario: ${id}`)
             card_jogo.classList.remove('card_dificil');
         }
 
-        console.log(btn_rejogar.style.display)
-        console.log(mensagem_jogo.style.display)
+        // console.log(btn_rejogar.style.display)
+        // console.log(mensagem_jogo.style.display)
 
         if(btn_rejogar.style.display == 'block') {
             btn_rejogar.style.display = 'none'
         }
 
-        console.log(btn_rejogar.style.display)
+        // console.log(btn_rejogar.style.display)
 
         if(mensagem_jogo.style.display == 'block') {
             mensagem_jogo.style.display = 'none'
         }
 
-        console.log(mensagem_jogo.style.display)
+        // console.log(mensagem_jogo.style.display)
         deleteCards();
         clearInterval(loop);
         timer.innerHTML = `0`;

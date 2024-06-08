@@ -78,7 +78,7 @@
             console.log("ESTOU NO THEN DO entrar()!")
 
             if (resposta.ok) {
-                console.log(resposta);
+                // console.log(resposta);
                 
                 resposta.json().then(json => {
                     console.log(json);
@@ -123,9 +123,9 @@
 
     function revelarSenha() {
     if(ipt_senha.type == 'password') {
-      console.log(ipt_senha.type);
+    //   console.log(ipt_senha.type);
       ipt_senha.type = 'text';
-      console.log(ipt_senha.type);
+    //   console.log(ipt_senha.type);
       revelar_senha.innerHTML = `<img id="olho_revelar" src="./assets/olho_visivel.png">`;
     } else {
       ipt_senha.type = 'password';

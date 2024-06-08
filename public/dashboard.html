@@ -166,7 +166,7 @@
             console.log("ESTOU NO THEN DO entrar()!")
             
             if (resposta.ok) {
-                console.log(resposta);
+                // console.log(resposta);
 
                 resposta.json().then(json => {
                     console.log(json);
@@ -195,32 +195,32 @@
             console.log("ESTOU NO THEN DO ranquear()!")
             
             if (resposta.ok) {
-                console.log(resposta);
+                // console.log(resposta);
                 
 
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
                     console.log(json.length)
-                    console.log(json[0].modo)
-                    console.log(json[0].tempo)
-                    console.log(json[0].nome)
+                    // console.log(json[0].modo)
+                    // console.log(json[0].tempo)
+                    // console.log(json[0].nome)
 
                     var usuario_normal = document.querySelectorAll('.usuario_normal');
                     var usuario_dificil = document.querySelectorAll('.usuario_dificil');
 
                     var tempo_normal = document.querySelectorAll('.tempo_normal');
                     var tempo_dificil = document.querySelectorAll('.tempo_dificil');
-                    console.log(usuario_normal)
-                    console.log(tempo_normal)
-                    console.log(usuario_dificil)
-                    console.log(tempo_dificil)
+                    // console.log(usuario_normal)
+                    // console.log(tempo_normal)
+                    // console.log(usuario_dificil)
+                    // console.log(tempo_dificil)
 
                     var i_normal = 0;
                     var i_dificil = 0;
                     for(var i = 0; i < json.length; i++) {
 
-                        console.log(json[i].modo)
+                        // console.log(json[i].modo)
 
                         if(json[i].modo == 'normal' && i_normal < usuario_normal.length) {
                             usuario_normal[i_normal].innerHTML = json[i].nome
@@ -329,13 +329,8 @@
                     font:{
                         size: 15,
                         family: "'Fjalla One', sans-serif"
-                    }, 
-                },
-                // title: {
-                //     display: true,
-                //     text: 'segundos',
-                //     color: '#f99601'
-                // },
+                    }
+                }
               }
             }
         }
