@@ -1,14 +1,14 @@
-# Repositório com projeto desenvolvido individualmente para a faculdade SPTech
+## Repositório com projeto desenvolvido individualmente para a faculdade SPTech
 
 
-## *Ferramentas e linguagens utilizadas*:
+### *Ferramentas e linguagens utilizadas*:
 
-### - HTML, CSS
+- HTML, CSS
 
-### - JavaScript
+- JavaScript
 
-### - Consumo e adaptação de API NodeJS fornecida pela faculdade
+- Consumo e adaptação de API NodeJS fornecida pela faculdade
 
-### - SQL
+- SQL
 
-### - Máquina virtual ubuntu
+- Máquina virtual ubuntu
